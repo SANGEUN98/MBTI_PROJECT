@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mbti.demo.domain.ChatMessage;
 import mbti.demo.domain.ChatRoom;
+import mbti.demo.domain.Member;
+import mbti.demo.repository.SessionConst;
 import mbti.demo.service.ChatService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -35,6 +37,13 @@ public class WebSockChatHandler extends TextWebSocketHandler {
         ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
         ChatRoom room = chatService.findRoomById(chatMessage.getRoomId());
         Set<WebSocketSession> sessions=room.getSessions();   //방에 있는 현재 사용자 한명이 WebsocketSession
+
+        // 아이디 추가 로직
+        Member loginMember = (Member) session.getAttributes().get(SessionConst.LOGIN_MEMBER);
+        if (loginMember != null) {
+            chatMessage.setSender(loginMember.getLoginId());
+        }
+
         if (chatMessage.getType().equals(ChatMessage.MessageType.ENTER)) {
             //사용자가 방에 입장하면  Enter메세지를 보내도록 해놓음.  이건 새로운사용자가 socket 연결한 것이랑은 다름.
             //socket연결은 이 메세지 보내기전에 이미 되어있는 상태

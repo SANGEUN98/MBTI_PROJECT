@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<title>Community</title>
+
+	<link rel="stylesheet" href="css/main.min.css" th:href="@{/css/main.min.css}">
+	<link rel="stylesheet" href="css/style.css"  th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="css/color.css"  th:href="@{/css/color.css}">
+	<link rel="stylesheet" href="css/responsive.css"  th:href="@{/css/reponsive.css}">
+
+
+</head>
+<body>
+<div th:insert="~{/header_login.html}"></div>
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+	<section>
+		<div class="ext-gap bluesh high-opacity">
+			<div class="content-bg-wrap" style="background: url(/images/resources/community.jpg)"></div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="top-banner">
+							<h1>COMMUNITY</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- top area animated -->
+	<section>
+		<div class="gap gray-bg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row" id="page-contents">
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+									<div class="widget">
+										<h4 class="widget-title"></h4>
+										<ul class="naves">
+											<li>
+												<i class="ti-clipboard"></i>
+												<a href="index_login.html" title=""th:href="@{/community}">게시물</a>
+											</li>
+											<li>
+												<i class="ti-files"></i>
+												<a href="timeline.html" title="">내 게시물</a>
+											</li>
+											<li>
+												<i class="ti-comments-smiley"></i>
+												<a href="messages.html" title="">메세지</a>
+											</li>
+											<li>
+												<i class="ti-user"></i>
+												<a href="timeline-friends.html" title="">친구</a>
+											</li>
+											<li>
+												<i class="ti-share"></i>
+												<a href="people-nearby.html" title="">동네친구</a>
+											</li>
+										</ul>
+									</div><!-- Shortcuts -->
+									<div class="widget stick-widget">
+										<h4 class="widget-title">Popular Tags</h4>
+										<ul class="followers">
+											<li>
+												<h5>#MBTI</h5>
+											</li>
+											<li>
+												<h5>#INFJ</h5>
+											</li>
+											<li>
+												<h5>#ISFP</h5>
+											</li>
+											<li>
+												<h5>#ISTJ</h5>
+											</li>
+											<li>
+												<h5>#ENTP</h5>
+											</li>
+											<li>
+												<h5>#ESFP</h5>
+											</li>
+										</ul>
+									</div><!-- popular tags -->
+								</aside>
+							</div><!-- sidebar -->
+							<div class="col-lg-6">
+								<div class="central-meta">
+									<h1 th:text="${room.name}">방 이름</h1>
+									<input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
+									<button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
+									<button type="button" value="방나가기" class="quit" onclick="quit()">방 나가기 </button>
+									<div>
+										<span>메세지</span>
+										<div class="msgArea"></div>
+									</div>
+								</div><!-- add post new box -->
+
+							</div><!-- centerl meta -->
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+									<div class="widget">
+										<h4 class="widget-title">오픈채팅</h4>
+										<div class="your-page">
+											<form action="/chat/createRoom" method="post">
+												<input type="text" name="name" placeholder="채팅방 이름">
+												<button type="submit" >방 만들기</button>
+											</form>
+
+											<table>
+												<tr th:each="room : ${roomList}" >
+													<td>
+														<a th:href="@{/chat/chatRoom/(roomId=${room.roomId})}"
+														   th:text="${room.name}"></a>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div><!-- Categories -->
+									<div class="widget friend-list stick-widget">
+										<h4 class="widget-title">Friends</h4>
+										<div id="searchDir"></div>
+										<ul id="people-list" class="friendz-list">
+											<li>
+												<figure>
+													<img src="/images/resources/user.png" alt="">
+													<span class="status f-online"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="">인싸</a>
+													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f2859b9c869780819d9e969780b2959f939b9edc919d9f">[email&#160;protected]</a></i>
+												</div>
+											</li>
+										</ul>
+										<div class="chat-box">
+											<div class="chat-head">
+												<span class="status f-online"></span>
+												<h6>아싸</h6>
+												<div class="more">
+													<span><i class="ti-more-alt"></i></span>
+													<span class="close-mesage"><i class="ti-close"></i></span>
+												</div>
+											</div>
+											<div class="chat-list">
+												<ul>
+													<li class="me">
+														<div class="chat-thumb"><img src="/images/resources/user2.png" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																안녕~!
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+													<li class="you">
+														<div class="chat-thumb"><img src="/images/resources/user.png" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																뭐해?
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+													<li class="me">
+														<div class="chat-thumb"><img src="/images/resources/user2.png" alt=""></div>
+														<div class="notification-event">
+															<span class="chat-message-item">
+																그냥 있지~
+															</span>
+															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
+														</div>
+													</li>
+												</ul>
+												<form class="text-box">
+													<textarea placeholder=""></textarea>
+													<div class="add-smiles">
+														<span title="add icon" class="em em-expressionless"></span>
+													</div>
+													<div class="smiles-bunch">
+														<i class="em em---1"></i>
+														<i class="em em-smiley"></i>
+														<i class="em em-anguished"></i>
+														<i class="em em-laughing"></i>
+														<i class="em em-angry"></i>
+														<i class="em em-astonished"></i>
+														<i class="em em-blush"></i>
+														<i class="em em-disappointed"></i>
+														<i class="em em-worried"></i>
+														<i class="em em-kissing_heart"></i>
+														<i class="em em-rage"></i>
+														<i class="em em-stuck_out_tongue"></i>
+													</div>
+													<button type="submit"></button>
+												</form>
+											</div>
+										</div>
+									</div><!-- friends list sidebar -->
+								</aside>
+							</div><!-- sidebar -->
+						</div >
+					</div>
+				</div>
+			</div>
+		</div>	
+	</section>
+
+	<footer>
+	</footer><!-- footer -->
+
+</div>
+	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/community/main.min.js" th:href="@{/js/community/main.min.js}"></script>
+	<script src="/js/community/script.js" th:href="@{/js/community/script.js}"></script>
+<!--	<script src="/js/community/map-init.js" th:href="@{/js/community/map-init.js}"></script>-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+
+</body>
+<script th:inline="javascript">
+
+
+	function enterRoom(socket){
+		var enterMsg={"type" : "ENTER","roomId":[[${room.roomId}]],"sender":[[${session.loginMember.getName()}]],"message":""};
+		socket.send(JSON.stringify(enterMsg));
+	}
+	let socket = new WebSocket("ws://localhost:8080/ws/chat");
+	// let socket = new WebSocket("ws://localhost:8060");
+	socket.onopen = function (e) {
+		console.log('open server!')
+		enterRoom(socket);
+	};
+	socket.onclose=function(e){
+		console.log('disconnet');
+	}
+
+	socket.onerror = function (e){
+		console.log(e);
+	}
+
+	//메세지 수신했을 때 이벤트.
+	socket.onmessage = function (e) {
+		let data = JSON.parse(e.data)
+
+		let msgArea = document.querySelector('.msgArea');
+		let newMsg = document.createElement('div');
+		newMsg.innerText= `${data.sender} : ${data.message}`;
+		msgArea.append(newMsg);
+	}
+
+
+	//메세지 보내기 버튼 눌렀을 떄..
+	function sendMsg() {
+		let content=document.querySelector('.content').value;
+		var talkMsg={"type" : "TALK","roomId":[[${room.roomId}]] ,"sender":[[${member.name}]],"message":content};
+		socket.send(JSON.stringify(talkMsg));
+	}
+
+	function quit(){
+		var quitMsg={"type" : "QUIT","roomId":[[${room.roomId}]] ,"sender":[[${member.name}]],"message":""};
+		socket.send(JSON.stringify(quitMsg));
+		socket.close();
+		location.href="/community";
+	}
+
+</script>
+</html>

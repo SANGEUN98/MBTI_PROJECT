@@ -19,7 +19,7 @@
         URL,
         영화정보 AS information
         from Movie
-        where 영화장르 = #{genre}
+        WHERE 영화장르 LIKE '%' || #{genre} || '%'
 --         ORDER BY
     </select>
 
