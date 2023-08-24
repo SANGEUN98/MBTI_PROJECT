@@ -20,6 +20,7 @@
         영화정보 AS information
         from Movie
         WHERE 영화장르 LIKE '%' || #{genre} || '%'
+--         ORDER BY
     </select>
 
     <select id="findByAnalystType" resultType="movie">

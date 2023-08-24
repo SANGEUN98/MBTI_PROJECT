@@ -47,10 +47,10 @@ public class MovieController {
     private RecommendService recommendService;
 
     // 테스트용 로그 뽑기
-//    @GetMapping("/")
+//    @GetMapping("/ii")
 //    public String test2(){
-////        log.info(movieServiceInterface.findByGenre("액션")+"");
-//        log.info(movieServiceInterface.findAll()+"");
+//        log.info(movieServiceInterface.findByGenre("액션")+"");
+////        log.info(movieServiceInterface.findAll()+"");
 //        return "index";
 //    }
 
