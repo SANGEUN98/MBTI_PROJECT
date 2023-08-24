@@ -12,7 +12,8 @@ import java.util.Optional;
 @Mapper
 
 public interface MovieMapper {
-    Optional<Movie> findByGenre(String genre);
+    List<Movie> findByGenre(RowBounds rowBounds,String genre);
+     List<Movie> findByGenre(String genre);
 
     // 일반
 //    List<Movie> findByAnalystType();

@@ -13,6 +13,7 @@ public class RecommendationResponse {
     public static class Recommendation {
         private String movieName;
         private double similarityScore;
+        private String info;
         private String genre;
         private String url;
     }

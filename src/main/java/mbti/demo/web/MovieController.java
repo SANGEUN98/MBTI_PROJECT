@@ -8,22 +8,29 @@ import lombok.extern.slf4j.Slf4j;
 import mbti.demo.domain.BoxMovie;
 import mbti.demo.domain.BoxRank;
 import mbti.demo.domain.Movie;
+import mbti.demo.repository.RecommendRepository;
 import mbti.demo.service.MovieService;
 import mbti.demo.service.MovieServiceInterface;
+import mbti.demo.service.RecommendService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.ScrollPosition.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -32,6 +39,12 @@ import java.util.List;
 public class MovieController {
     private final MovieServiceInterface movieServiceInterface;
     private final MovieService movieService;
+
+    @Autowired
+    private RecommendRepository recommendRepository;
+
+    @Autowired
+    private RecommendService recommendService;
 
     // 테스트용 로그 뽑기
 //    @GetMapping("/ii")
@@ -45,7 +58,17 @@ public class MovieController {
     @GetMapping("/analyst") //@PathVariable long itemId,
     public String AnalystTypeMovie(@PageableDefault(size = 10, sort = "name") Pageable pageable, Model model) {
         Page<Movie> movie = movieServiceInterface.findByAnalystType(pageable);
+        String[] mbtiLsit = {"INTJ","INTP","ENTJ","ENTP"};
+
+        int nowPage = movie.getPageable().getPageNumber();
+        int startPage = Math.max(nowPage -4, 1);
+        int endPage = Math.min(nowPage + 5, movie.getTotalPages());
+
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         model.addAttribute("movies", movie);
+        model.addAttribute("mbtiList", mbtiLsit);
         return "/movie/analyst";
 //        return "/movie/movieList";
 
@@ -140,5 +163,30 @@ public class MovieController {
 //        Page<Movie> page = movieServiceInterface.findAll(pageable);
 //        return page;
 //    }
+
+    @GetMapping("/analyst/{id}")
+    public String getMbtiMovieGenre(@PathVariable("id") String id, @PageableDefault(size = 10, sort = "rank") Pageable pageable, Model model) {
+        
+        String movieGenre = recommendService.movieGenre(id);
+        Page<Movie> movie = movieServiceInterface.findByGenre(pageable, movieGenre);
+        String[] mbtiLsit = {"INTJ","INTP","ENTJ","ENTP"};
+        int nowPage = movie.getPageable().getPageNumber() + 1;
+        int startPage = Math.max(nowPage -4, 1);
+        int endPage = Math.min(nowPage + 4, movie.getTotalPages());
+
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("movies", movie);
+        model.addAttribute("mbti", id);
+        model.addAttribute("mbtiList", mbtiLsit);
+        return "/movie/analyst";
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        recommendService.setting();
+        return"";
+    }
 
 }

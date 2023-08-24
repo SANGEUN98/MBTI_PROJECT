@@ -51,7 +51,8 @@
 <script type="module" th:inline="javascript">
   import {DataForm} from '/js/recommend_popup.js'
   var recommendations = [[${recommendations}]];
-  DataForm(recommendations)
+  console.log(recommendations); // 이 부분을 recommendations 배열 정의 전에 위치시키면 됩니다.
+  DataForm(recommendations);
 </script>
 </body>
 </html>

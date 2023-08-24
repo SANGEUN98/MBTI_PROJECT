@@ -17,7 +17,6 @@
 
 </head>
 <body>
-<div th:insert="~{/header_login.html}"></div>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
 	<section>
@@ -93,69 +92,68 @@
 								</aside>
 							</div><!-- sidebar -->
 							<div class="col-lg-6">
-								<div class="central-meta">
-									<div class="new-postbox">
-										<figure>
-											<img src="/images/resources/user.png" alt="">
-										</figure>
-										<div class="newpst-input">
-											<form th:action="@{/community/{memberId}(memberId=${session.loginMember.getLoginId()})}" method="post">
-												<textarea name="Content"></textarea>
-												<div class="attachments">
-													<ul>
-														<li>
-															<i class="fa fa-music"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li>
-														<li>
-															<i class="fa fa-image"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li>
-														<li>
-															<i class="fa fa-video-camera"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li>
-														<li>
-															<i class="fa fa-camera"></i>
-															<label class="fileContainer">
-																<input type="file">
-															</label>
-														</li>
-														<li>
-															<button type="submit">Post</button>
-														</li>
-													</ul>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div><!-- add post new box -->
+<!--								<div class="central-meta">-->
+<!--									<div class="new-postbox">-->
+<!--										<figure>-->
+<!--											<img src="/images/resources/user.png" alt="">-->
+<!--										</figure>-->
+<!--										<div class="newpst-input">-->
+<!--											<form th:action="@{/community/{memberId}(memberId=${session.loginMember.getLoginId()})}" method="post">-->
+<!--												<textarea name="Content"></textarea>-->
+<!--												<div class="attachments">-->
+<!--													<ul>-->
+<!--														<li>-->
+<!--															<i class="fa fa-music"></i>-->
+<!--															<label class="fileContainer">-->
+<!--																<input type="file">-->
+<!--															</label>-->
+<!--														</li>-->
+<!--														<li>-->
+<!--															<i class="fa fa-image"></i>-->
+<!--															<label class="fileContainer">-->
+<!--																<input type="file">-->
+<!--															</label>-->
+<!--														</li>-->
+<!--														<li>-->
+<!--															<i class="fa fa-video-camera"></i>-->
+<!--															<label class="fileContainer">-->
+<!--																<input type="file">-->
+<!--															</label>-->
+<!--														</li>-->
+<!--														<li>-->
+<!--															<i class="fa fa-camera"></i>-->
+<!--															<label class="fileContainer">-->
+<!--																<input type="file">-->
+<!--															</label>-->
+<!--														</li>-->
+<!--														<li>-->
+<!--															<button type="submit">Post</button>-->
+<!--														</li>-->
+<!--													</ul>-->
+<!--												</div>-->
+<!--											</form>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>&lt;!&ndash; add post new box &ndash;&gt;-->
 								<div class="loadMore">
-								<div class="central-meta item" th:each="list : ${list}">
-									<div class="user-post">
+								<div class="central-meta item" >
+									<form th:action="@{/community/update/{id}(id=${list.id})}" th:object="${list}" method="post">
+										<input type="hidden" name="_method" value="put"/>
+										<input type="hidden" name="id" th:value="*{id}" />
+									    <div class="user-post">
 										<div class="friend-info">
 											<figure>
 												<img src="/images/resources/user.png" alt="">
 											</figure>
 											<div class="friend-name">
 												<ins><a href="" title="" th:text="${session.loginMember.getLoginId()}">CY</a></ins>
-												<span th:text="${list.created}"></span>
+												<span th:text="*{modified}"></span>
 											</div>
-											<li>
-												<a th:href="@{/community/update/{id}(id=${list.id})}">수정</a>
-												<a th:href="@{/community/delete(id=${list.id})}">삭제</a>
-											</li>
+<!--												<a th:href="@{/community/delete(id=${list.id})}">삭제</a>-->
 											<div class="post-meta">
-												<img src="/images/resources/user-post.jpg" alt="">
+<!--												<img src="/images/resources/user-post.jpg" alt="">-->
 												<div class="description">
-														<p th:text="${list.content}"><a href="#" title="">#INFP!</a> 나 고민이 있는데 들어줄 사람! 내 친구는 나랑 MBTI가 완전 정반대라서 이해를 못해줌,, 그래서 나 이해해줄 사람 찾고 있음ㅠㅠ
-													</p>
+														<textarea th:text="*{content}"></textarea>
 												</div>
 												<div class="we-video-info">
 													<ul>
@@ -193,57 +191,59 @@
 														</li>
 													</ul>
 												</div>
+												<button>수정</button>
 											</div>
 										</div>
-										<div class="coment-area" >
-											<ul class="we-comet">
-												<li>
-													<div class="comet-avatar">
-														<img src="/images/resources/user2.png" alt="">
-													</div>
-													<div class="we-comment" >
-														<div class="coment-head">
-															<h5><a href="time-line.html" title="" th:text="${session.loginMember.getLoginId()}">ENFP</a></h5>
-<!--															<span>1 year ago</span>-->
-															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-														</div>
-														<p >왜 이해 못해줌? 그 친구 혹시 T야?</p>
-													</div>
-												<li>
-													<a href="#" title="" class="showmore underline">more comments</a>
-												</li>
-												<li class="post-comment">
-													<div class="comet-avatar">
-														<img src="/images/resources/user2.png" alt="">
-													</div>
-													<div class="post-comt-box">
-														<textarea id="commentInput" placeholder="Post your comment"></textarea>
-														<button id="postCommentButton">Post</button>
-														<div class="add-smiles">
-															<span class="em em-expressionless" title="add icon"></span>
-															</div>
-															<div class="smiles-bunch">
-																<i class="em em---1"></i>
-																<i class="em em-smiley"></i>
-																<i class="em em-anguished"></i>
-																<i class="em em-laughing"></i>
-																<i class="em em-angry"></i>
-																<i class="em em-astonished"></i>
-																<i class="em em-blush"></i>
-																<i class="em em-disappointed"></i>
-																<i class="em em-worried"></i>
-																<i class="em em-kissing_heart"></i>
-																<i class="em em-rage"></i>
-																<i class="em em-stuck_out_tongue"></i>
-															</div>
-															<button type="submit" class="post"></button>
-														</form>
-													</div>
-												</li>
-											</ul>
-										</div>
+
+<!--										<div class="coment-area" >-->
+<!--											<ul class="we-comet">-->
+<!--												<li>-->
+<!--													<div class="comet-avatar">-->
+<!--														<img src="/images/resources/user2.png" alt="">-->
+<!--													</div>-->
+<!--													<div class="we-comment" >-->
+<!--														<div class="coment-head">-->
+<!--															<h5><a href="time-line.html" title="" th:text="${session.loginMember.getLoginId()}">ENFP</a></h5>-->
+<!--&lt;!&ndash;															<span>1 year ago</span>&ndash;&gt;-->
+<!--															<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>-->
+<!--														</div>-->
+<!--														<p >왜 이해 못해줌? 그 친구 혹시 T야?</p>-->
+<!--													</div>-->
+<!--												<li>-->
+<!--													<a href="#" title="" class="showmore underline">more comments</a>-->
+<!--												</li>-->
+<!--												<li class="post-comment">-->
+<!--													<div class="comet-avatar">-->
+<!--														<img src="/images/resources/user2.png" alt="">-->
+<!--													</div>-->
+<!--													<div class="post-comt-box">-->
+<!--														<form method="post">-->
+<!--															<textarea placeholder="Post your comment"></textarea>-->
+<!--															<div class="add-smiles">-->
+<!--																<span class="em em-expressionless" title="add icon"></span>-->
+<!--															</div>-->
+<!--															<div class="smiles-bunch">-->
+<!--																<i class="em em-&#45;&#45;1"></i>-->
+<!--																<i class="em em-smiley"></i>-->
+<!--																<i class="em em-anguished"></i>-->
+<!--																<i class="em em-laughing"></i>-->
+<!--																<i class="em em-angry"></i>-->
+<!--																<i class="em em-astonished"></i>-->
+<!--																<i class="em em-blush"></i>-->
+<!--																<i class="em em-disappointed"></i>-->
+<!--																<i class="em em-worried"></i>-->
+<!--																<i class="em em-kissing_heart"></i>-->
+<!--																<i class="em em-rage"></i>-->
+<!--																<i class="em em-stuck_out_tongue"></i>-->
+<!--															</div>-->
+<!--															<button type="submit" class="post"></button>-->
+<!--														</form>-->
+<!--													</div>-->
+<!--												</li>-->
+<!--											</ul>-->
+<!--										</div>-->
 									</div>
-								</div>
+									</form>
 								</div>
 							</div><!-- centerl meta -->
 							<div class="col-lg-3">

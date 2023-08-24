@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MovieRepository {
-    Optional<Movie> findByGenre(String genre);
+    List<Movie> findByGenre(int offset, int limit, String genre);
     // 일반
 //    List<Movie> findByAnalystType();
     // 페이징용

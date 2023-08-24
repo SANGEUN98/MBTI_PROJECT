@@ -11,7 +11,8 @@ public class Community extends BaseTimeEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_community")
     private Long id;
-
+    @Column(name = "login_id")
+    private String login_id;
     private String memberId;
 
     private String content;

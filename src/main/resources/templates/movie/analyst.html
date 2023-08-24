@@ -35,28 +35,15 @@
 </head>
 <body>
 <div th:include="header.html"></div>
-<aside id="list-aside">
-    <div class="menu">
-        <label for="expand-menu"><div>MBTI 유형</div></label><hr>
-        <input type="checkbox" id="expand-menu" name="expand-menu">
-        <ul>
-            <li><a th:href="@{/movie/analyst}" class="item"><div>분석가형(_NT_)</div></a></li>
-            <li><a th:href="@{/movie/Diplomatic}" class="item"><div>외교관형(_NF_)</div></a></li>
-            <li><a th:href="@{/movie/administrator}" class="item"><div>관리자형(_S_J)</div></a></li>
-            <li><a th:href="@{/movie/explorer}" class="item"><div>탐험가형(_S_P)</div></a></li>
-            <li><a th:href="@{/movie/box}" class="item"><div>박스오피스</div></a></li>
-
-        </ul>
-    </div>
-</aside>
 <section id="list-section">
+    <div>
     <h1>유형별 영화추천 페이지</h1>
     <h2>분석가형(_NT_)</h2>
     <div class="button" id="button-back"> <!-- 유형별 MBTi 나열-->
-        <button style="--clr:#39FF14"><span>#INTJ</span><i></i></button>
-        <button style="--clr:#FF44CC"><span>#INTP</span><i></i></button>
-        <button style="--clr:#0FF0FC"><span>#ENTJ</span><i></i></button>
-        <button style="--clr:#8A2BE2"><span>#ENTP</span><i></i></button>
+        <a th:href="@{/movie/analyst/{id}(id=${mbtiList[0]})}"><button style="--clr:#39FF14"><span>#INTJ</span><i> </i></button></a>
+        <a th:href="@{/movie/analyst/{id}(id=${mbtiList[1]})}"><button style="--clr:#FF44CC"><span>#INTP</span><i></i></button></a>
+        <a th:href="@{/movie/analyst/{id}(id=${mbtiList[2]})}"><button style="--clr:#0FF0FC"><span>#ENTJ</span><i></i></button></a>
+        <a th:href="@{/movie/analyst/{id}(id=${mbtiList[3]})}"><button style="--clr:#8A2BE2"><span>#ENTP</span><i></i></button></a>
     </div>
 
 </section>
@@ -70,18 +57,25 @@
 </form>
 
 <!-- 페이징 목록 -->
-<span>Pages:</span>
-<span th:each="pageNumber : ${#numbers.sequence(0, movies.totalPages)}">
-    <a th:href="@{/movie/analyst(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
-</span>
-</div>
+<!-- <span>Pages:</span>
+<span th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}">
+    <a th:if="${pageNumber != nowPage}" th:href="@{/movie/analyst/INTJ(page=${pageNumber})}" th:text="${pageNumber}"></a>
+    <strong th:if="${pageNumber == nowPage}" th:text="${page}" style="color : red"></strong>
+</span> -->
+<th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+    <a th:if="${page != nowPage}" th:href="@{/movie/analyst/{mbti}(mbti=${mbti}, page= ${page - 1})}" th:text="${page}"></a>
+    <strong th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
+    <div th:text="${mbti}"></div>
+</th:block>
+
 
 <div class="footer_wrap" th:include="footer.html"></div>
 
 <script type="module" th:inline="javascript">
     import {MovieForm} from '/js/movie/popup.js'
     let list = [[${movies.content}]]
-    console.log(list)
+    console.log([[${mbti}]])
+    console.log([[${mbtiList}]])
     MovieForm(list)
 
     const modal0 = document.getElementsByClassName('modalWrap');

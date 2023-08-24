@@ -313,17 +313,56 @@ $(function() {
 	}
 	
 /** Post a Comment **/
-jQuery(".post-comt-box textarea").on("keydown", function(event) {
+$(document).ready(function() {
+	// 웹 페이지 로딩 시 댓글 데이터 가져오고 표시
+	$.ajax({
+		url: "/comments",
+		method: "GET",
+		dataType: "json",
+		success: function(response) {
+			// 댓글 데이터를 사용하여 웹 페이지에 표시
+			var commentList = $(".we-comet"); // 댓글 영역을 선택
+			if (Array.isArray(response)) {
+				// 댓글 목록인 경우
+				for (var i = 0; i < response.length; i++) {
+					var comment = response[i];
+					var loginId = comment.loginId || "Anonymous";
+					var comment_HTML = '<li><div class="comet-avatar"><img src="/images/resources/user2.png" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + loginId + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment.text + '</p></div></li>';
+					commentList.prepend(comment_HTML); // 새 댓글을 목록의 맨 위에 추가
+				}
+			}
+		},
+		error: function(error) {
+			console.error("Error:", error);
+		}
+	});
 
-	if (event.keyCode == 13) {
-		var comment = jQuery(this).val();
-		var parent = jQuery(".showmore").parent("li");
-		var comment_HTML = '	<li><div class="comet-avatar"><img src="images/resources/user2.png" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">이름</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>'+comment+'</p></div></li>';
-		$(comment_HTML).insertBefore(parent);
-		jQuery(this).val('');
-	}
-}); 
-	
+	// 댓글 작성 후 서버에 저장하고 웹 페이지에 표시
+	$("#postCommentButton").on("click", function() {
+		var commentText = $("#commentInput").val();
+
+		if (commentText.trim() !== "") {
+			$.ajax({
+				url: "/comments",
+				method: "POST",
+				contentType: "application/json",
+				data: JSON.stringify({ comment: commentText }),
+				success: function(response) {
+					// 서버 응답 처리
+					if (response) {
+						var comment_HTML = '<li><div class="comet-avatar"><img src="/images/resources/user2.png" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + response.loginId + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + response.text + '</p></div></li>';
+						$("#commentList").prepend(comment_HTML); // 새댓글을 목록의 맨 위에 추
+						$("#commentInput").val(""); // 댓글 입력 필디비우기
+					}
+				},
+				error: function(error) {
+					console.error("Error:", error);
+				}
+			});
+		}
+	});
+});
+
 //inbox page 	
 //***** Message Star *****//  
     $('.message-list > li > span.star-this').on("click", function(){

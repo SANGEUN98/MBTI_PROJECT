@@ -20,9 +20,9 @@ public class MyBatisMovieRepository implements MovieRepository {
 
 
     @Override
-    public Optional<Movie> findByGenre(String genre) {
-
-        return movieMapper.findByGenre(genre);
+    public List<Movie> findByGenre(int offset, int limit,String genre) {
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        return movieMapper.findByGenre(rowBounds,genre);
     }
 
     // 일반적

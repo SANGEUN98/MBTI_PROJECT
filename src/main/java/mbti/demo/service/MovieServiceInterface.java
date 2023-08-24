@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MovieServiceInterface {
-    Optional<Movie> findByGenre(String genre);
+    Page<Movie> findByGenre(Pageable pageable, String genre);
     // 일반
 //    List<Movie> findByAnalystType();
     // 페이징용

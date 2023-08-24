@@ -26,8 +26,20 @@ public class MovieService implements MovieServiceInterface {
     private final MovieMapper movieMapper;
 
     @Override
-    public Optional<Movie> findByGenre(String genre) {
-        return movieRepository.findByGenre(genre);
+    public Page<Movie> findByGenre(Pageable pageable,String genre) {
+        int offset = pageable.getPageNumber() * pageable.getPageSize();
+        int limit = pageable.getPageSize();
+        RowBounds rowBounds = new RowBounds(offset, limit);
+
+        List<Movie> movieList = movieMapper.findByGenre(rowBounds,genre);
+        List<Movie> movieSize = movieMapper.findByGenre(genre);
+        
+        int fageSize = movieSize.size();
+
+        long totalCount = movieMapper.countTotalMovies();
+        System.out.println(totalCount);
+
+        return new PageImpl<>(movieList, pageable, fageSize);
     }
 
     // 일반적
