@@ -73,4 +73,18 @@
         SELECT COUNT(*) FROM Book
     </select>
 
+    <select id="findByGenre" resultType="Book">
+        select
+        제목 AS title,
+        이미지 as image,
+        작가 as author,
+        출판사 as company,
+        서술 as description,
+        링크 as link
+        from book 
+        WHERE  genre LIKE '%' || #{genre} || '%'
+    </select>
+
+
+
 </mapper>

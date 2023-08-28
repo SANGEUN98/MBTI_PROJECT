@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>유형별 책추천 페이지</title>
+    <link rel="stylesheet" href="/css/book/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/listCSS.css}" >
+    <style>
+        .paging{
+           display: block;
+            text-align: center;
+            float: none;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{${login}}"></div>
+<section>
+    <div class="ext-gap bluesh high-opacity">
+        <div class="content-bg-wrap2" style="background: url(/images/resources/book.jpg)" ></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="top-banner">
+                        <h1>유형별 영화추천 페이지</h1>
+                        <h2 style="color: #fff" th:text="${type}">분석가형(_NT_)</h2>
+                        <br>
+                        <!--유형별 MBTi 나열-->
+                        <div id="button">
+                            <a th:href="@{/book/mbti/type/{id}(id=${mbtiList[0]})}"><button class="w-btn w-btn-indigo" type="button" th:text="${mbtiList[0]}">#INTJ</button></a>
+                            <a th:href="@{/book/mbti/type/{id}(id=${mbtiList[1]})}"><button class="w-btn w-btn-indigo" type="button" th:text="${mbtiList[1]}">#INTP</button></a>
+                            <a th:href="@{/book/mbti/type/{id}(id=${mbtiList[2]})}"><button class="w-btn w-btn-indigo" type="button" th:text="${mbtiList[2]}">#ENTJ</button></a>
+                            <a th:href="@{/book/mbti/type/{id}(id=${mbtiList[3]})}"><button class="w-btn w-btn-indigo" type="button" th:text="${mbtiList[3]}">#ENTP</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form id="form1">
+
+</form>
+
+<form id="form2">
+
+</form>
+<!-- 페이징 목록 -->
+<div class="paging">
+    <span>Pages:</span>
+    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/book/mbti/type/{mbti}(mbti=${mbti}, page= ${page - 1})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
+    </th:block>
+</div>
+<footer></footer>
+
+<script type="module" th:inline="javascript">
+    import {bookForm} from '/js/book/popup(수정).js'
+    let list = [[${book.content}]]
+    console.log(list)
+    bookForm(list)
+
+    const modal0 = document.getElementsByClassName('modalWrap');
+    const btn = document.querySelectorAll('#form1 button');
+
+
+    async function getUserLoginId() {
+        try {
+            const response = await fetch('/save-user-login-id');
+            if (response.ok) {
+                const data = await response.json();
+                const userLoginId = data ? data.loginId : null;
+                console.log('Fetched userLoginId:', userLoginId); // 확인용 로그
+                return userLoginId;
+            }
+        } catch (error) {
+            console.error('Error fetching user info:', error);
+        }
+        return null;
+    }
+
+
+    for (let i = 0; i < list.length; i++) {
+
+        async function PopUp(e) {
+            e.preventDefault();
+            console.log('gd');
+            modal0[i].style.display = 'block';
+
+            const bookInfo= list[i].description;
+            console.log(bookInfo);
+
+            const bookName = list[i].title; // 장르 정보 가져오기
+            console.log(bookName);
+
+            const bookAuthor = list[i].author; // 장르 정보 가져오기
+            console.log(bookAuthor);
+
+            const userLoginId = await getUserLoginId(); // 사용자 로그인 아이디 값을 비동기적으로 가져옴
+
+            if (userLoginId) {
+                fetch('/save-user-movie-info', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ info: bookInfo, author: bookAuthor, title:bookName ,loginId: userLoginId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data); // 서버의 응답 데이터 확인
+                    })
+                    .catch(error => {
+                        console.error('Error sending movie info:', error);
+                    });
+            } else {
+                console.error('User not logged in.');
+            }
+        
+
+        btn[i].addEventListener('click', PopUp);
+    }
+}
+</script>
+
+
+
+</body>
+</html>

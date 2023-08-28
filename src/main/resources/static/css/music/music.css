@@ -1,0 +1,76 @@
+form {
+    width: 1000px;
+    margin: 0 auto;
+    margin: 100px auto;
+    text-align: center;
+}
+
+
+
+.music-list{
+    list-style-type: none;
+    border-bottom: 1px solid black;
+}
+
+li div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#music-top {
+    list-style-type: none;
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+}
+
+#mbti-button-div{
+    width: 1000px;
+    height: 200px;
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#mbti-button-li{
+    list-style-type: none;
+    padding: 10px;
+
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+div[name="순위"] {
+    position: relative;
+    right: 45px;
+}
+div[name="곡정보"] {
+    width: 450px;
+}
+div[name="아티스트"] {
+    position: relative;
+    left: 10px;
+}
+
+
+div[name="ranking"] {
+    width: 100px;
+}
+
+div[name="img"] img{
+    height: 60px;
+    width: 60px;
+}
+div[name="img"]{
+    width: 100px;
+}
+
+div[name="title"] {
+    width: 300px;
+}
+
+div[name="singer"] {
+    width: 200px;
+}

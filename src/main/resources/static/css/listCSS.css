@@ -1,112 +1,161 @@
 /* MBTI 유형 버튼 */
-#button-back {
-    margin: 0;
-    padding: 0;
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+    margin: auto;
     box-sizing: border-box;
+}
+
+#button {
+    position: relative;
     text-align: center;
 }
 
-#button-back button{
+.w-btn {
     position: relative;
-    background: #444;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
     border: none;
-    letter-spacing: 0.1rem;
-    font-size: 1rem;
-    padding: 1rem 3rem;
-    transition: 0.2s;
-    white-space: normal;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
 }
 
-#button-back button:hover {
-    letter-spacing: 0.2rem;
-    padding: 1.1rem 3.1rem;
-    background: var(--clr);
-    color: var(--clr);
-    /* box-shadow: 0 0 35px var(--clr); */
-    animation: box1 3s infinite;
-}
-
-#button-back button::before {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    background: #272822;
-}
-
-#button-back button span {
+.w-btn-outline {
     position: relative;
-    z-index: 1;
-}
-#button-back button i {
-    position: absolute;
-    inset: 0;
-    display: block;
-}
-
-#button-back button i::before {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 2px;
-    left: 80%;
-    top: -2px;
-    border: 2px solid var(--clr);
-    background: #272822;
-    transition: 0.2s;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
 }
 
-#button-back button:hover i::before {
-    width: 15px;
-    left: 20%;
-    animation: move 3s infinite;
+.w-btn-indigo {
+    background-color: aliceblue;
+    color: #1e6b7b;
 }
 
-#button-back button i::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 2px;
-    left: 20%;
-    bottom: -2px;
-    border: 2px solid var(--clr);
-    background: #272822;
-    transition: 0.2s;
+.w-btn-indigo-outline {
+    border: 3px solid aliceblue;
+    color: #1e6b7b;
 }
 
-#button-back button:hover i::after {
-    width: 15px;
-    left: 80%;
-    animation: move 3s infinite;
+.w-btn-indigo-outline:hover {
+    color: #1e6b7b;
+    background: aliceblue;
 }
 
-@keyframes move {
+.w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.w-btn-outline:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.w-btn:active {
+    transform: scale(1.5);
+}
+
+.w-btn-outline:active {
+    transform: scale(1.5);
+}
+
+.w-btn-gra-anim {
+    background-size: 400% 400%;
+    animation: gradient1 5s ease infinite;
+}
+
+@keyframes gradient1 {
     0% {
-        transform: translateX(0);
+        background-position: 0% 50%;
     }
     50% {
-        transform: translateX(5px);
+        background-position: 100% 50%;
     }
     100% {
-        transform: translateX(0);
+        background-position: 0% 50%;
     }
 }
 
-@keyframes box1 {
+@keyframes gradient2 {
     0% {
-        box-shadow: #27272c;
+        background-position: 100% 50%;
     }
     50% {
-        box-shadow: 0 0 25px var(--clr);
+        background-position: 0% 50%;
     }
     100% {
-        box-shadow: #27272c;
+        background-position: 100% 50%;
     }
 }
 
-body{min-width:1024px;}
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.w-btn-neon2 {
+    position: relative;
+    border: none;
+    min-width: 200px;
+    min-height: 50px;
+    background: linear-gradient(
+            90deg,
+            rgba(129, 230, 217, 1) 0%,
+            rgba(79, 209, 197, 1) 100%
+    );
+    border-radius: 1000px;
+    color: darkslategray;
+    cursor: pointer;
+    box-shadow: 12px 12px 24px rgba(79, 209, 197, 0.64);
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.w-btn-neon2:hover {
+    transform: scale(1.2);
+}
+
+.w-btn-neon2:hover::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #00ffcb;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
+/* 필요 부분*/
+body{
+    /*text-align: center;*/
+    padding: 300px;
+    background-color: #fff;
+    display: table-cell;
+    min-width:1024px;
+}
 #list-section{
     width: 710px;
     border: 2px;

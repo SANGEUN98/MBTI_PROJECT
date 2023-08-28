@@ -7,11 +7,26 @@
 #리스트0 {
 }
 
+#form1 div[name='제목']{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 0px 0px 10px;
+}
+
+#form1 div[name='순위']{
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px;
+    color: #0a53be;
+    font-size: 20px;
+    font-weight: bold;
+}
 #form1 {
     display: flex;
     width:1500px;
     margin: 0 auto;
-    margin: 100px auto;
     text-align: center;
     flex-wrap: wrap;
 
@@ -21,29 +36,40 @@
 }
 
 #form1 li{
+    position: relative;
     list-style: none;
-    border: 3px solid black;
+    border: 3px solid #3E7DAB;
     margin: 40px;
     padding-top: 10px;
-    border-radius: 5%;
+    /*border-radius: 5%;*/
+    width: 200px;
+    height: 100%;
 }
 
 #form1 img{
-    border: 2px solid black;
+    /*border: 2px solid #3E7DAB;*/
+    width: 180px;
+    height: 240px;
 }
+
 #form1 div[name='button']{
-    border-top: 2px solid black;
+    border-top: 2px solid #fff;
 }
 #form1 button[name='button1']{
-    width: 75px;
-    height: 30px;
+    width: 50%;
+    height: 70px;
     white-space: normal;!important;
-    color: black;!important;
+    color: white;!important;
+    border: 1px solid #fff;
 }
 #form1 button[name='button2']{
-    width: 75px;
-    height: 30px;
+    width: 50%;
+    height: 70px;
+    border: 1px solid #fff;
 }
+
+
+
 
 .btnWrap {
     width: 500px;
@@ -57,6 +83,7 @@
 }
 
 .modalWrap {
+
     position: fixed;
     /* Stay in place */
     z-index: 1;
@@ -71,10 +98,11 @@
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.568);
     /* Black w/ opacity */
     display: none;
 }
+
 .modalWrap1 {
     position: fixed;
     /* Stay in place */
@@ -90,17 +118,17 @@
     /* Full height */
     overflow: auto;
     /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.555);
     /* Black w/ opacity */
     display: none;
 }
 
 .modalBody {
+    position: relative;
     width: 1200px;
-    height: 700px;
     padding: 30px 30px;
     margin: 0 auto;
-    border: 1px solid #777;
+    border: 3px solid #777;
     background-color: #fff;
 }
 
@@ -112,3 +140,123 @@
     cursor: pointer;
 }
 
+
+#form2 div[name='container'] {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    border-bottom: solid #775936 20px ;
+    margin-bottom: 100px;
+}
+
+
+
+#form2 div[name='popup-img'] {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0px;
+    margin-right: 20px;
+}
+
+#form2 img[name='form2Image'] {
+    width: 350px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+#form2 p[name='inform'] {
+    display: inline-block;
+    /* vertical-align: middle; */
+    margin: 0;
+    font-size: 18px;
+    color: black;
+    line-height: 33px;
+    text-align: left;
+}
+
+#form2 div[name='줄거리'] {
+    display: inline-block;
+    /* vertical-align: middle; */
+    margin: 0;
+    width: 700px;
+}
+
+
+/* 일반 CSS로 변환한 코드 */
+.circle {
+    width: 40px;
+    height: 40px;
+    left : 1087px;
+    bottom: 20px;
+    background: transparent;
+    border: 4px solid #434343;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+.circle:before {
+    left: 50%;
+    top: 50%;
+    margin-left: -12px;
+    margin-top: -2px;
+    width: 24px;
+    height: 4px;
+    background-color:#434343;
+    content: "";
+    position: absolute;
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.circle:after {
+    width: 24px;
+    height: 4px;
+    background-color:#434343;
+    content: "";
+    left: 50%;
+    top: 50%;
+    margin-left: -12px;
+    margin-top: -2px;
+    position: absolute;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/* .circle[data-animation="simpleRotate"] */
+.custom-class {
+    /*.circle[data-animation="simpleRotate"] {*/
+    transition: transform 0.1s ease-in-out;
+}
+
+/* @keyframes rotate */
+@keyframes rotate {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+/* .circle[data-animation="simpleRotate"]:not(.simpleRotate) */
+.custom-class:not(.simpleRotate) {
+    /*.circle[data-animation="simpleRotate"]:not(.simpleRotate) {*/
+    transition: transform 200ms cubic-bezier(0.175, 0.885, 0.52, 1.575);
+}
+
+/* .circle[data-animation="simpleRotate"]:not(.simpleRotate):hover */
+.custom-class:not(.simpleRotate):hover {
+    /*.circle[data-animation="simpleRotate"]:not(.simpleRotate):hover {*/
+    transform: scale(1.1);
+}

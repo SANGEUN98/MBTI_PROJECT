@@ -39,7 +39,7 @@ export function bestBookForm(lists) {
         div3.textContent = `${list[i][2]}`
         li.appendChild(div3)
         div4.setAttribute('name', '순위')
-        div4.textContent = `${list[i][3]}`
+        div4.textContent = `${list[i][3]}위`
         li.appendChild(div4)
         div5.setAttribute('name', 'button')
         button1.setAttribute('name', 'button1')
@@ -59,16 +59,26 @@ export function bestBookForm(lists) {
         const div8 = document.createElement('div')
         const div9 = document.createElement('div')
         const div10 = document.createElement('div')
+        const div11 = document.createElement('div')
+        const buttonDiv = document.createElement('div')
         const button3 = document.createElement('button')
         const img2 = document.createElement('img')
         const p = document.createElement('p')
+
         div6.setAttribute('class', 'modalWrap')
         div6.setAttribute('id', `modalWrap${i}`)
         form2.appendChild(div6)
         div7.setAttribute('class', 'modalBody')
         div6.appendChild(div7)
         div7.appendChild(div8)
-        button3.textContent = 'x'
+        buttonDiv.setAttribute("class", "cirCont")
+        div8.appendChild(buttonDiv)
+
+        button3.classList.add('circle', 'custom-class');
+        button3.setAttribute("data-animation", "simpleRotate")
+        button3.setAttribute("data-remove", "200")
+        buttonDiv.appendChild(button3)
+
         button3.addEventListener('click', function(event) {
             event.preventDefault();  // 기본 동작(새로고침) 막기
             // 버튼을 눌렀을 때 수행할 동작 추가
@@ -77,15 +87,22 @@ export function bestBookForm(lists) {
             const modal = document.getElementById(modal0);
             modal0[i].style.display = 'none'; // 모달 숨기기
         });
-        div8.appendChild(button3)
-        div9.setAttribute('name', 'popup-img')
+
+        div9.setAttribute('name', 'container')
         div7.appendChild(div9)
+        div10.setAttribute("name", "popup-img")
+        div9.appendChild(div10)
+        div11.setAttribute("name", "줄거리")
+        div9.appendChild(div11)
         img2.setAttribute('src', `${list[i][0]}`)
-        div9.appendChild(img2)
-        div10.setAttribute('name', '서술')
-        div7.appendChild(div10)
+        img2.setAttribute("name", "form2Image")
+        div10.appendChild(img2)
+        div10.setAttribute('name', 'popup-img')
         p.textContent = `${list[i][4]}`
-        div10.appendChild(p)
+        p.setAttribute("name", "inform")
+        div11.appendChild(p)
+        
+
     }
 
 

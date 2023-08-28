@@ -1,6 +1,7 @@
 export function MovieForm(lists, first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth) {
     console.log('실행됨')
-    console.log(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth)
+    // console.log(first, second, third, fourth, fifth, sixth, seventh, eighth, ninth, tenth)
+
     lists.sort((a,b) => a.rank - b.rank)
     first.sort((a,b) => a.rankDate - b.rankDate)
     second.sort((a,b) => a.rankDate - b.rankDate)
@@ -12,8 +13,6 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
     eighth.sort((a,b) => a.rankDate - b.rankDate)
     ninth.sort((a,b) => a.rankDate - b.rankDate)
     tenth.sort((a,b) => a.rankDate - b.rankDate)
-    console.log(lists)
-    console.log(first)
     const form1 = document.getElementById('form1')
     const form2 = document.getElementById('form2')
     let abc = []
@@ -47,7 +46,6 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         abc.push(first[i].rankDate)
         firsts.push(abc)
     }
-    console.log(first)
     for (let i = 0; i < second.length; i++) {
         let abc = []
         abc.push(second[i].rank)
@@ -128,7 +126,7 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         li.setAttribute('id', `리스트${i}`)
         form1.appendChild(li)
         div1.setAttribute('name', '이미지')
-        li.appendChild(div1);
+        li.appendChild(div1)
         img1.setAttribute('src', `${list[i][0]}`)
         div1.appendChild(img1)
         div2.setAttribute('name', '영화제목')
@@ -138,7 +136,7 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         div3.textContent = `${list[i][2]}`
         li.appendChild(div3)
         div4.setAttribute('name', '영화순위')
-        div4.textContent = `${list[i][3]}`
+        div4.textContent = `${list[i][3]}위`
         li.appendChild(div4)
         div5.setAttribute('name', 'button')
         button1.setAttribute('name', 'button1')
@@ -161,7 +159,6 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         const div10 = document.createElement('div')
         const div11 = document.createElement('div')
         const canvas = document.createElement('canvas')
-        const button3 = document.createElement('button')
         const img2 = document.createElement('img')
         const p = document.createElement('p')
         const p1 = document.createElement('p')
@@ -171,28 +168,92 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         div7.setAttribute('class', 'modalBody')
         div6.appendChild(div7)
         div7.appendChild(div8)
-        button3.textContent = 'x'
-        button3.addEventListener('click', function(event) {
-            event.preventDefault();  // 기본 동작(새로고침) 막기
-            // 버튼을 눌렀을 때 수행할 동작 추가
-            // 예를 들어, 모달을 닫도록 하는 코드 등을 여기에 추가
-            const modalId = this.getAttribute('modal0'); // 모달 ID 가져오기
-            const modal = document.getElementById(modal0);
-            modal0[i].style.display = 'none'; // 모달 숨기기
+
+        // jQuery 코드
+        $(document).ready(function() {
+            $('.circle').on('click', function(event) {
+                event.preventDefault(event);  // 버튼 클릭 시 기본 동작(새로고침) 막기
+                // 버튼을 눌렀을 때 수행할 동작 추가
+                // 예를 들어, 모달을 닫도록 하는 코드 등을 여기에 추가
+                const modalId = this.getAttribute('modal0'); // 모달 ID 가져오기
+                const modal = document.getElementById(modal0);event.preventDefault();  // 버튼 클릭 시 기본 동작(새로고침) 막기
+                modal0[i].style.display = 'none'; // 모달 숨기기
+                var animClass = $(this).data('animation');
+                var removeTime = $(this).data('remove');
+
+                if ($(this).hasClass(animClass)) {
+                    $(this).removeClass(animClass);
+                } else {
+                    $(this).addClass(animClass);
+
+                    if (typeof removeTime !== 'undefined') {
+                        var el = $(this);
+                        setTimeout(function() {
+                            el.removeClass(animClass);
+                        }, removeTime);
+                    }
+                }
+            });
         });
-        div8.appendChild(button3)
+
+// 부모 컨테이너 엘리먼트 생성
+        const circCont = document.createElement('div');
+        circCont.classList.add('circCont');
+
+// 버튼 엘리먼트 생성
+        const button = document.createElement('button');
+        button.classList.add('circle','custom-class');
+        button.setAttribute('data-animation', 'simpleRotate');
+        button.setAttribute('data-remove', '200');
+
+// 버튼 클릭 시 동작 추가
+        button.addEventListener('click', function() {
+            const animClass = this.getAttribute('data-animation');
+            const removeTime = parseInt(this.getAttribute('data-remove'));
+
+            if (this.classList.contains(animClass)) {
+                this.classList.remove(animClass);
+            } else {
+                this.classList.add(animClass);
+
+                if (!isNaN(removeTime)) {
+                    const el = this;
+                    setTimeout(function() {
+                        el.classList.remove(animClass);
+                    }, removeTime);
+                }
+            }
+        });
+
+
+// 요소들을 부모 컨테이너에 추가
+        circCont.appendChild(button);
+
+// 부모 컨테이너를 적절한 위치에 추가 (예: body 요소)
+        div8.appendChild(circCont);
+
+        // 부모 컨테이너 엘리먼트 생성
+        const container = document.createElement('div');
+        container.setAttribute('name','container')
+
         div9.setAttribute('name', 'popup-img')
-        div7.appendChild(div9)
+        container.appendChild(div9)
         img2.setAttribute('src', `${list[i][0]}`)
+        img2.setAttribute('name','form2Image')
+        img2.setAttribute('class','form2Image')
         div9.appendChild(img2)
         div10.setAttribute('name', '줄거리')
-        div7.appendChild(div10)
+        container.appendChild(div10)
         p.textContent = `${list[i][4]}`
+        p.setAttribute('name','inform')
         div10.appendChild(p)
+
+        div7.appendChild(container)
         // 차트 존
         div11.setAttribute('name', 'chart')
         div7.appendChild(div11)
-        p1.textContent = `${rankList[i][0][0]}`
+        p1.setAttribute("id", "nowRank")
+        p1.textContent = `현재 ${rankList[i][0][0]} 위`
         div11.appendChild(p1)
         canvas.setAttribute('name','canvas')
         canvas.setAttribute('id',`canvas${i}`)
@@ -202,8 +263,8 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
 
     const modal0 = document.getElementsByClassName('modalWrap')
     const btn = document.querySelectorAll('#form1 button')
-
     const num = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+    // console.log(first[first.length - 1].rankDate)
     for (let i = 0; i < 10; i++) {
 
 
@@ -212,19 +273,27 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
             e.preventDefault();
             modal0[i].style.display = 'block';
             let rankChart = document.getElementById(`canvas${i}`).getContext('2d');
-            console.log(e)
-            console.log(rankChart)
+
+// 스케줄러 작성 전까지는 최신 데이터 사용
+// =======================================================================================
             // 현재 날짜 구하는 객체 설정
-            var today = new Date();
+            // var today = new Date();
             // 7일 전 날짜부터 1일 전 날짜까지의 날짜 배열 생성
-            var dateArray = Array.from({ length: 7 }, (_, index) => {
-                var daysAgo = today.getTime() - (index + 1) * 24 * 60 * 60 * 1000;
-                var date = new Date(daysAgo);
-                var year = date.getFullYear();
-                var month = String(date.getMonth() + 1).padStart(2, "0");
-                var day = String(date.getDate()).padStart(2, "0");
-                return year + month + day;
-            });
+            // var dateArray = Array.from({ length: 7 }, (_, index) => {
+            //     var daysAgo = today.getTime() - (index + 1) * 24 * 60 * 60 * 1000;
+            //     var date = new Date(daysAgo);
+            //     var year = date.getFullYear();
+            //     var month = String(date.getMonth() + 1).padStart(2, "0");
+            //     var day = String(date.getDate()).padStart(2, "0");
+            //     return year + month + day;
+            // });
+// =======================================================================================   
+            let date = Number(first[first.length - 1].rankDate);
+            let dateArray=[]
+            for (let i=0; i< 7; i++) {
+                dateArray.push(date - i)
+            }
+
 
             let sevenDaysAgo = 11; // 기본값으로 초기화
             let sixDaysAgo = 11; // 기본값으로 초기화
@@ -234,66 +303,111 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
             let twoDaysAgo = 11; // 기본값으로 초기화
             let yesterday = 11; // 기본값으로 초기화
 
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[6] === `${rankList[i][x][2]}`) {
-                    sevenDaysAgo = `${rankList[i][x][0]}`;
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[6] === `${rankList[i][x][2]}`) {
+            //         sevenDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[5] === `${rankList[i][x][2]}`) {
+            //         sixDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[4] === `${rankList[i][x][2]}`) {
+            //         fiveDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[3] === `${rankList[i][x][2]}`) {
+            //         fourDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[2] === `${rankList[i][x][2]}`) {
+            //         threeDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[1] === `${rankList[i][x][2]}`) {
+            //         twoDaysAgo = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            // for (let x = 0; x < `${rankList[i].length}`; x++) {
+            //     if (dateArray[0] === `${rankList[i][x][2]}`) {
+            //         yesterday = `${rankList[i][x][0]}`;
+            //         break; // 조건을 만족한 경우 반복 종료
+            //     }
+            // }
+
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[6] === Number(rankList[i][x][2])) {
+                    sevenDaysAgo = rankList[i][x][0];
                     break; // 조건을 만족한 경우 반복 종료
                 }
             }
 
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[5] === `${rankList[i][x][2]}`) {
-                    sixDaysAgo = `${rankList[i][x][0]}`;
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[5] === Number(rankList[i][x][2])) {
+                    sixDaysAgo = rankList[i][x][0];
+                    break; // 조건을 만족한 경우 반복 종료
+                }
+            } 
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[4] === Number(rankList[i][x][2])) {
+                    fiveDaysAgo = rankList[i][x][0];
+                    break; // 조건을 만족한 경우 반복 종료
+                }
+            } 
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[3] === Number(rankList[i][x][2])) {
+                    fourDaysAgo = rankList[i][x][0];
+                    break; // 조건을 만족한 경우 반복 종료
+                }
+            } 
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[2] === Number(rankList[i][x][2])) {
+                    threeDaysAgo = rankList[i][x][0];
+                    break; // 조건을 만족한 경우 반복 종료
+                }
+            } 
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[1] === Number(rankList[i][x][2])) {
+                    twoDaysAgo = rankList[i][x][0];
                     break; // 조건을 만족한 경우 반복 종료
                 }
             }
-
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[4] === `${rankList[i][x][2]}`) {
-                    fiveDaysAgo = `${rankList[i][x][0]}`;
+            for (let x = 0; x < rankList[i].length; x++) {
+                if (dateArray[0] === Number(rankList[i][x][2])) {
+                    yesterday = rankList[i][x][0];
                     break; // 조건을 만족한 경우 반복 종료
                 }
             }
-
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[3] === `${rankList[i][x][2]}`) {
-                    fourDaysAgo = `${rankList[i][x][0]}`;
-                    break; // 조건을 만족한 경우 반복 종료
-                }
-            }
-
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[2] === `${rankList[i][x][2]}`) {
-                    threeDaysAgo = `${rankList[i][x][0]}`;
-                    break; // 조건을 만족한 경우 반복 종료
-                }
-            }
-
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[1] === `${rankList[i][x][2]}`) {
-                    twoDaysAgo = `${rankList[i][x][0]}`;
-                    break; // 조건을 만족한 경우 반복 종료
-                }
-            }
-
-            for (let x = 0; x < `${rankList[i].length}`; x++) {
-                if (dateArray[0] === `${rankList[i][x][2]}`) {
-                    yesterday = `${rankList[i][x][0]}`;
-                    break; // 조건을 만족한 경우 반복 종료
-                }
-            }
+            
 
             const ascendingData = [sevenDaysAgo,sixDaysAgo,fiveDaysAgo,fourDaysAgo,threeDaysAgo,twoDaysAgo,yesterday];
             const data = {
                 labels: [dateArray[6],dateArray[5],dateArray[4],dateArray[3],dateArray[2],dateArray[1],dateArray[0]],
                 datasets: [
                     {
-                        label: 'Ddataset',
+                        label: '주간순위',
                         data: ascendingData,
                         borderColor: "red",
-                        backgroundColor: "red",
+                        backgroundColor: "#FF8080",
                         pointStyle: 'circle',
-                        pointRadius: 10,
+                        pointRadius: 5,
                         pointHoverRadius: 15,
                     }
                 ]
@@ -306,13 +420,12 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
                     plugins: {
                         title: {
                             display: true,
-                            text: (ctx) => 'Point Style: ' + ctx.chart.data.datasets[0].pointStyle,
                         }
                     },
                     scales: {
                         x: {
                             suggestedMin: dateArray[6], // 7일 전 날짜
-                            suggestedMax: dateArray[0]  // 1일 전 날짜
+                            suggestedMax: dateArray[0],  // 1일 전 날짜
                         },
                         y: {
                             beginAtZero: false, // y축의 시작값을 0이 아닌 데이터 최소값으로 설정
@@ -338,4 +451,12 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
 
         btn[num[i]].addEventListener('click', PopUp)
     }
+
+    // const top1 = document.getElementById("리스트0")
+    // const top1Div = document.createElement("div")
+    // top1Div.innerText = "1등!";
+    // top1Div.setAttribute("id", "top1")
+    // top1.appendChild(top1Div)
+
+
 }

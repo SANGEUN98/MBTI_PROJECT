@@ -12,6 +12,7 @@ public class Book {
     private Long releaseDate;
     private Long bookNumber;
     private String description;
+    private String genre;
 
 
     public Book(){

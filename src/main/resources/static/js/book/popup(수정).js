@@ -1,4 +1,5 @@
 export function bookForm(lists) {
+
     const form1 = document.getElementById('form1')
     const form2 = document.getElementById('form2')
     console.log(lists);
@@ -14,6 +15,7 @@ export function bookForm(lists) {
         abc.push(lists[i].link)
         list.push(abc)
     }
+    console.log(list);
 
     for (let i = 0; i < list.length; i++) {
         const li = document.createElement('li')
@@ -50,32 +52,36 @@ export function bookForm(lists) {
         div5.appendChild(button1)
         div5.appendChild(button2)
 
-        // function link(e) {
-        //     e.preventDefault()
-        //     window.open(`${list[i][5]}`, '_blank')
-        // }
-        // button1.addEventListener('click', link)
-        button1.addEventListener('click', function(e) {
+        button1.addEventListener('click', function (e) {
             e.preventDefault()
             window.open(`${list[i][5]}`, '_blank');
         });
-
         const div6 = document.createElement('div')
         const div7 = document.createElement('div')
         const div8 = document.createElement('div')
         const div9 = document.createElement('div')
         const div10 = document.createElement('div')
+        const div11 = document.createElement('div')
+        const buttonDiv = document.createElement('div')
         const button3 = document.createElement('button')
         const img2 = document.createElement('img')
         const p = document.createElement('p')
+
         div6.setAttribute('class', 'modalWrap')
         div6.setAttribute('id', `modalWrap${i}`)
         form2.appendChild(div6)
         div7.setAttribute('class', 'modalBody')
         div6.appendChild(div7)
         div7.appendChild(div8)
-        button3.textContent = 'x'
-        button3.addEventListener('click', function(event) {
+        buttonDiv.setAttribute("class", "cirCont")
+        div8.appendChild(buttonDiv)
+
+        button3.classList.add('circle', 'custom-class');
+        button3.setAttribute("data-animation", "simpleRotate")
+        button3.setAttribute("data-remove", "200")
+        buttonDiv.appendChild(button3)
+
+        button3.addEventListener('click', function (event) {
             event.preventDefault();  // 기본 동작(새로고침) 막기
             // 버튼을 눌렀을 때 수행할 동작 추가
             // 예를 들어, 모달을 닫도록 하는 코드 등을 여기에 추가
@@ -83,34 +89,37 @@ export function bookForm(lists) {
             const modal = document.getElementById(modal0);
             modal0[i].style.display = 'none'; // 모달 숨기기
         });
-        div8.appendChild(button3)
-        div9.setAttribute('name', 'popup-img')
+
+        div9.setAttribute('name', 'container')
         div7.appendChild(div9)
+        div10.setAttribute("name", "popup-img")
+        div9.appendChild(div10)
+        div11.setAttribute("name", "줄거리")
+        div9.appendChild(div11)
         img2.setAttribute('src', `${list[i][0]}`)
-        div9.appendChild(img2)
-        div10.setAttribute('name', '서술')
-        div7.appendChild(div10)
+        img2.setAttribute("name", "form2Image")
+        div10.appendChild(img2)
+        div10.setAttribute('name', 'popup-img')
         p.textContent = `${list[i][4]}`
-        div10.appendChild(p)
+        p.setAttribute("name", "inform")
+        div11.appendChild(p)
+
+
     }
 
 
     const modal0 = document.getElementsByClassName('modalWrap')
     const btn = document.querySelectorAll('#form1 button')
 
+
     const num = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < btn.length/2; i++) {
 
         function PopUp(e) {
             e.preventDefault();
-            console.log('gd');
             modal0[i].style.display = 'block';
         }
 
         btn[num[i]].addEventListener('click', PopUp)
-
-       };
+    }
 }
-// button1.addEventListener('click', function() {
-//     window.open(`${list[i][5]}`, '_blank');
-// });

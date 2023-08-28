@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface MovieMapper {
     List<Movie> findByGenre(RowBounds rowBounds,String genre);
-     List<Movie> findByGenre(String genre);
+    List<Movie> findByGenre(String genre);
 
     // 일반
 //    List<Movie> findByAnalystType();

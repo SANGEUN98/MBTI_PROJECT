@@ -9,6 +9,9 @@ import mbti.demo.domain.Member;
 import mbti.demo.repository.SessionConst;
 import mbti.demo.service.LoginInterface;
 import mbti.demo.service.MemberServiceInterface;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,10 +44,13 @@ public class LoginController {
             return "login/login";
         }
 
+        Optional<Member> member = memberServiceInterface.findById(loginMember.getId());
+        System.out.println(member.get().getNickName()); 
 
         HttpSession session = request.getSession();
 
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+        session.setAttribute("member", member);
 
         return "redirect:/";
     }
@@ -55,7 +61,7 @@ public class LoginController {
         if (session != null) {
             session.invalidate();
         }
-        return "main/main";
+        return "redirect:/";
     }
 
     @GetMapping("/find_id")

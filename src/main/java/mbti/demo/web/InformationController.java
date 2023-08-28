@@ -1,5 +1,7 @@
 package mbti.demo.web;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mbti.demo.domain.Information;
@@ -21,7 +23,17 @@ public class InformationController {
 
 
     @GetMapping("/about")
-    public String All_list(Model model){
+    public String All_list(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        String login = "";
+        if(session == null){
+            login = "header.html";
+        }
+
+        else {
+            login="header_login.html";
+        }
+        model.addAttribute("login", login);
         List<Information> information = informationServiceInterface.findAll();
         List<MbtiVO> mbti = mbtiInterface.getAll();
         model.addAttribute("information",information);

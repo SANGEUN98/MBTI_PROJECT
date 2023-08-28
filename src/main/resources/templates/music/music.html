@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>유형별 음악 페이지</title>
+    <link rel="stylesheet" href="/css/book/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/listCSS.css}">
+    <link rel="stylesheet" th:href="@{/css/music/music.css}">
+    <style>
+        .paging {
+            display: block;
+            text-align: center;
+            float: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div th:insert="~{${login}}"></div>
+    <section>
+        <div class="ext-gap bluesh high-opacity">
+            <div class="content-bg-wrap2" style="background: url(/images/resources/music.jpg)"></div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="top-banner">
+                            <h1>유형별 음악추천 페이지</h1>
+                            <div id="mbti-button-div">
+                                <li id="mbti-button-li" th:each=" mbti : ${mbtiList}">
+                                    <a th:href="@{/music/mbti/{type}(type=${mbti})}">
+                                        <button class="w-btn w-btn-indigo" type="button"  th:text="${mbti}">INTJ</button>
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <form id="melon-chart-form">
+            <li id="music-top">
+                <div name="순위">순위</div>
+                <div name="곡정보">곡정보</div>
+                <div name="아티스트">아티스트</div>
+            </li>
+        <div class="music-container" th:each=" list, i: ${list}">
+            <a th:href="|https://www.youtube.com/results?search_query=${list.getSinger}+${list.getTitle}|">
+                <li class="music-list">
+                    <div th:text="${list.ranking}" name="ranking">
+                    </div>
+                    <div name="img">
+                        <img th:src="${list.getImg}" alt="">
+                    </div>
+                    <div th:text="${list.getTitle}" name="title">
+                        Suaaaaaaaaaadfasdfdsafper Shy
+                    </div>
+                    <div th:text="${list.getTitle}" name="singer">
+                        NewJeansfdsfadf
+                    </div>
+                </li>
+            </a>
+        </div>
+    </form>
+</body>
+
+</html>

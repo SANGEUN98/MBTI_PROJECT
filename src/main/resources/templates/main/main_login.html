@@ -21,18 +21,21 @@
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">MBTI</a>
+                <a class="navbar-brand" href="#page-top" th:href="@{/}"><img src="/img/MBTI흰.png" style="width: 70px; height: 40px"></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <li class="nav-item"><a class="nav-link"  th:text="|${member.name}님 환영합니다|">로그인 님환영합니다</a></li>
                         <li class="nav-item"><a class="nav-link" href="mbti_information3.html" th:href="@{/about}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../book/book1.html" th:href="@{/book/AnalystType}">Book</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../movie/analyst.html" th:href="@{/movie/analyst}">Movie</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/kakaover4.html"  th:href="@{/culture}">Culture</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Community" th:href="@{/community}">Community</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#Community" th:href="@{/mypage}">My Page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../book/book1.html" th:href="@{/book/best}">Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../movie/movieMbti.html" th:href="@{/movie/box}">Movie</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/kakaover4.html"  th:href="@{/music/mbti/{type}(type=type)}">Music</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/kakaover4.html"  th:href="@{/culture}">Place</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" th:href="@{/display_recommendations}">AI.TIP</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" th:href="@{/community}">Community</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" th:href="@{/mypage}">My Page</a></li>
                         <li class="nav-item"><a class="nav-link" href="../login/login.html" th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </div>
@@ -43,12 +46,12 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-<!--                        <h1 class="text-white font-weight-bold">나는 어떤 사람인지, 어떤 것을 좋아하는지 고민인가요?<br>-->
-<!--                            이곳에서 MBTI 최적유형을 찾고, 유형별 추천 코스를 경험해보세요.</h1>-->
+                        <!--                        <h1 class="text-white font-weight-bold">나는 어떤 사람인지, 어떤 것을 좋아하는지 고민인가요?<br>-->
+                        <!--                            이곳에서 MBTI 최적유형을 찾고, 유형별 추천 코스를 경험해보세요.</h1>-->
                         <hr class="divider" />
                     </div>;
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5" style="font-size: 2em;">나는 어떤 사람인지, 어떤 것을 좋아하는지 고민인가요?<br>
+                        <p class="text-white-75 mb-5" style="font-size: 4em;">나는 어떤 사람인지,<br>어떤 것을 좋아하는지 고민인가요?<br>
                             이곳에서 MBTI 최적유형을 찾고, 유형별 추천 코스를 경험해보세요.</p>
                         <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
@@ -60,13 +63,11 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h3 class="text-white mt-0">Meet Yourself</h3>
+                        <h3 class="text-white mt-0" style="font-size: 3em;">Meet Yourself</h3>
                         <hr class="divider divider-light">
-                        <p class="text-white-75 mb-5" style="font-size: 1.5em;">사람의 성향을 파악하는 방법으로 성격 유형 검사가 꾸준히 인기를 얻고 있습니다.<br>
-                            MBTI(Myers-Briggs Type Indicator)로 불리는 이 검사는 4개 지표를 나누고<br>
-                            각각 두 가지 중 하나의 결과를 도출해내는데,<br>
-                            이를 통해 열여섯 가지 성격 유형이 만들어집니다.</p>
-                        <p class="text-white-75 mb-5" style="font-size: 1em;">
+                        <p class="text-white-75 mb-5" style="font-size: 2em;">사람의 성향을 파악하는 방법으로 성격 유형 검사가<br>꾸준히 인기를 얻고 있습니다.<br>
+                            MBTI(Myers-Briggs Type Indicator)로 불리는 이 검사는<br>4개 지표를 나누고 각각 두 가지 중 하나의 결과를 도출해내는데,<br>이를 통해 열여섯 가지 성격 유형이 만들어집니다.</p>
+                        <p class="text-white-75 mb-5" style="font-size: 1.5em;">
                             에너지의 방향을 나타내는 외향형(E), 내향형(I)<br>
                             사람이나 사물을 인식하는 방식을 나타내는 감각형(S), 직관형(N)<br>
                             판단의 근거를 나타내는 사고형(T), 감정현(F)<br>
@@ -87,34 +88,32 @@
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">책</h3>
-                            <p class="text-muted mb-0">분석형, 외교관형, 관리자형, 모험가형별로<br>어울릴만한 책을 추천해드립니다</p><br>
-                            <p>성예은</p>
+                            <h3 class="h4 mb-2">정보</h3><br>
+                            <p class="text-muted mb-0">나와 같은 유형 혹은 다른 유형의 비율과<br>
+                                각 유형의 정보까지 확인할 수 있습니다</p><br>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">영화</h3>
-                            <p class="text-muted mb-0">분석형, 외교관형, 관리자형, 모험가형별로<br>어울릴만한 영황를 추천해드립니다</p><br>
-                            <p>이상은</p>
+                            <h3 class="h4 mb-2">책/영화/음악/장소</h3><br>
+                            <p class="text-muted mb-0">MBTI 16가지 유형별 혹은<br>
+                                분석형(_NT_), 외교관형(_NF_),<br>관리자형(_S_J), 탐험가형(_S_P)별로<br>추천해드립니다</p><br>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">문화생활</h3>
-                            <p class="text-muted mb-0">유형별 문화생활를 즐길 수 있도록<br>어울리는 장소를 추천해드립니다</p><br>
-                            <p>박준혁</p>
+                            <h3 class="h4 mb-2">AI추천</h3><br>
+                            <p class="text-muted mb-0">나의 취향을 바탕으로<br> ai가 추천해드립니다</p><br>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">정보</h3>
-<!--                            <p class="text-muted mb-0">나와 같은 유형 혹은 다른 유형에게<br>금한 점을 편하게 물어볼 수 있는<br>게시판입니다</p>-->
-                            <p class="text-muted mb-0">나와 같은 유형 혹은 다른 유형의 비율과<br>각 유형의 정보까지<br>확인할 수 있습니다.</p><br>
-                            <p>김채연</p>
+                            <h3 class="h4 mb-2">커뮤니티</h3><br>
+                            <p class="text-muted mb-0">나와 같은 유형 혹은 다른 유형의<br>MBTI친구들과
+                                편하게 소통할 수 있습니다</p><br>
                         </div>
                     </div>
                 </div>
@@ -143,11 +142,11 @@
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6" >
-                        <a class="portfolio-box" href="/img/exhibition.jpg" th:href="@{kakaover4.html}" title="Exhibition">
-                            <img class="img-fluid" src="/img/exhibition.jpg" th:href="@{/culture}" alt="..." />
+                        <a class="portfolio-box" href="/img/music.jpg" th:href="@{/}" title="Exhibition">
+                            <img class="img-fluid" src="/img/music.jpg"  alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50"  >Category</div>
-                                <div class="project-name" >CULTURE</div>
+                                <div class="project-name" >MUSIC</div>
                             </div>
                         </a>
                     </div>
@@ -158,7 +157,7 @@
         <section class="page-section bg-dark text-white">
             <div class="container px-4 px-lg-5 text-center">
                 <h2 class="mb-4">MBTI 검사! 지금 해보세요</h2>
-                <a class="btn btn-light btn-xl" href="https://www.16personalities.com/ko/%EB%AC%B4%EB%A3%8C-%EC%84%B1%EA%B2%A9-%EC%9C%A0%ED%98%95-%EA%B2%80%EC%82%AC">Click! Now</a>
+                <a class="btn btn-light btn-xl" href="/static/test.html" th:href="@{/test}" th:target="_blank">Click! Now</a>
             </div>
         </section>
         <!-- Footer-->
@@ -168,13 +167,13 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js}"></script>
         <!-- SimpleLightbox plugin JS-->
-<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbo/2.1.0/simpleLightbox.min.js" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js}"></script>-->
+        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbo/2.1.0/simpleLightbox.min.js" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js}"></script>-->
         <!-- Core theme JS-->
         <script src="/js/scripts.js" th:src="@{/js/scripts.js}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-<!--        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
+        <!--        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
     </body>
 </html>

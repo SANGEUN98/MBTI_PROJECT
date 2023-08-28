@@ -98,15 +98,24 @@
       text-align: center; /* 텍스트를 가운데 정렬 */
       font-size: 1.5em;
     }
+    img{
+      width: 360px;
+      height: 300px;
+      display: block;
+      margin: auto;
+    }
+    ul{
+      padding-inline-start: 20px;
+    }
     footer{
-      padding-top: 50px;
+      margin-top: 100px;
     }
 
   </style>
 </head>
 <body>
-<div th:insert="~{/header.html}"></div>
-<section>
+<div th:insert="~{${login}}"></div>
+<section class="information">
   <div class="charts-row">
     <h2>MBTI RANKING<br>(나와 같은 유형, 얼마나 있을까?)</h2>
     <div class="chart-container">
@@ -137,16 +146,12 @@
     </div>
   </div>
 </section>
-<script type="module" th:inline="javascript">
-  import {chart} from '/js/chart.js'
-  const a = [[${mbti}]]
-  chart(a)
-</script>
 <!--mbti graph end-->
 
 <!--information button start-->
 <table class="popup-container">
   <h2>MBTI 정보<br>#나의 키워드 #내 성향</h2>
+
   <tr th:each="i, rowStat : ${information}" th:if="${rowStat.index % 4 == 0}" th:class="${'color-' + ((rowStat.index / 4) % 4 + 1)}">
     <td>
       <button class="openBtn"><h2 th:text ="|${i.getIndicate()}|"></h2></button>
@@ -166,7 +171,9 @@
             <li th:text="|${i.getKeyword8()}|"></li>
             <li th:text="|${i.getKeyword9()}|"></li>
             <li th:text="|${i.getKeyword10()}|"></li>
-            <img th:src="|${i.getImg()}|"></img>
+            <hr>
+            <h4>추천 직업</h4>
+            <img th:src="|${i.getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
         </div>
@@ -189,7 +196,9 @@
             <li th:text="|${information[rowStat.index + 1].getKeyword8()}|"></li>
             <li th:text="|${information[rowStat.index + 1].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 1].getKeyword10()}|"></li>
-            <img th:src="|${information[rowStat.index + 1].getImg()}|"></img>
+            <hr>
+            <h4>추천 직업</h4>
+            <img th:src="|${information[rowStat.index + 1].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
         </div>
@@ -212,7 +221,9 @@
             <li th:text="|${information[rowStat.index + 2].getKeyword8()}|"></li>
             <li th:text="|${information[rowStat.index + 2].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 2].getKeyword10()}|"></li>
-            <img th:src="|${information[rowStat.index + 2].getImg()}|"></img>
+            <hr>
+            <h4>추천 직업</h4>
+            <img th:src="|${information[rowStat.index + 2].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
         </div>
@@ -235,7 +246,9 @@
             <li th:text="|${information[rowStat.index + 3].getKeyword8()}|"></li>
             <li th:text="|${information[rowStat.index + 3].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 3].getKeyword10()}|"></li>
-            <img th:src="|${information[rowStat.index + 3].getImg()}|"></img>
+            <hr>
+            <h4>추천 직업</h4>
+            <img th:src="|${information[rowStat.index + 3].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
         </div>
@@ -243,25 +256,14 @@
     </td>
   </tr>
 </table>
-<!--information button end-->
-<footer th:insert="~{/footer.html}"></footer>
-<!--information button javascript start-->
-<!--<script type="text/javascript" th:src="@{/js/popup.js}"></script>-->
-<!--<script type="text/javascript" th:src="@{/js/chart.js}"></script>-->
-<!--<script type="module" th:inline="javascript">-->
-<!--  import {chart} from '/js/chart.js'-->
-<!--  const a = [[${mbti}]]-->
-<!--  chart(a)-->
-<!--</script>-->
-<script type="text/javascript" th:src="@{/js/popup.js}"></script>
-<script th:inline="javascript">
-  console.log('gd')
-    const a = [[${information}]]
-    console.log(a)
-</script>
-<!--<script th:inline="javascript">-->
+<footer></footer>
 
-<!--</script>-->
-<!--information button javascript end-->
+<script type="module" th:inline="javascript">
+  import { chart } from '/js/chart.js'
+  const a = [[${ mbti }]]
+  chart(a)
+</script>
+<script type="text/javascript" th:src="@{/js/popup.js}"></script>
+
 </body>
 </html>

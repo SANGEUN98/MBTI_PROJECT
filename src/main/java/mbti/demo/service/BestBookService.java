@@ -1,7 +1,7 @@
 package mbti.demo.service;
 import lombok.extern.slf4j.Slf4j;
 import mbti.demo.domain.BestBook;
-import mbti.demo.repository.BestBookInterface;
+import mbti.demo.repository.BestBookRepository;
 import mbti.demo.mybatis.BestBookMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class BestBookService implements BestBookServiceInterface{
-    private final BestBookInterface bestbookInterface;
+    private final BestBookRepository bestbookInterface;
 
 
 

@@ -34,8 +34,10 @@ public class MemberController {
     @PostMapping("/join")
     public String join(@Validated @ModelAttribute
                        Member member, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        System.out.println(member);
 
         Member savedMember = memberServiceInterface.save(member);
+        
         if (savedMember == null) {
             bindingResult.rejectValue("loginId", "duplicate.loginId",
                     "해당 아이디가 이미 사용중입니다.");
@@ -43,6 +45,7 @@ public class MemberController {
         if(bindingResult.hasErrors()){
             return "member/join";
         }
+
         redirectAttributes.addAttribute("loginId",savedMember.getLoginId());
         redirectAttributes.addAttribute("status",true);
         return "redirect:/";
@@ -74,6 +77,6 @@ public class MemberController {
     public String myInfo(@PathVariable String loginId, MemberUpdateDto member) {
         memberServiceInterface.update(loginId, member);
 
-        return "member/myInfo";
+        return "redirect:/mypage";
     }
 }

@@ -36,8 +36,6 @@ public class MovieService implements MovieServiceInterface {
         
         int fageSize = movieSize.size();
 
-        long totalCount = movieMapper.countTotalMovies();
-        System.out.println(totalCount);
 
         return new PageImpl<>(movieList, pageable, fageSize);
     }

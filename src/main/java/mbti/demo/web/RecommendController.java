@@ -25,7 +25,17 @@ public class RecommendController {
     @Autowired
     private RecommendService recommendService;
 
+    @GetMapping("/recommend/test")
+    public void test1() {
+        Recommend recommend = new Recommend();
 
+        // recommend.setBookGenre("아이고");
+        // recommend.setMovieGenre("아이고");
+        // recommend.setMusicGenre("아이고");
+        // recommend.setMbti("아이고");
+
+        recommendRepository.save(recommend);
+    }
 
     @GetMapping("/recommend")
     public String test(Model model) {

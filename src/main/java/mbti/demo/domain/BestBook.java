@@ -11,7 +11,6 @@ public class BestBook {
     private String info;
     private String link;
 
-
     public BestBook(){
     }
 

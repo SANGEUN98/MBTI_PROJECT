@@ -1,6 +1,6 @@
 package mbti.demo.mybatis;
 import mbti.demo.domain.BestBook;
-import mbti.demo.repository.BestBookInterface;
+import mbti.demo.repository.BestBookRepository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class MyBatisBestBookRepository implements BestBookInterface {
+public class MyBatisBestBookRepository implements BestBookRepository {
     private final BestBookMapper bestBookMemberMapper;
 
 

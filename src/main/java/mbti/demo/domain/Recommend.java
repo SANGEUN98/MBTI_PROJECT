@@ -22,7 +22,8 @@ public class Recommend {
     private String mbti;
 
     private String movieGenre;
-    
+
     private String bookGenre;
 
+    private String musicGenre;
 }

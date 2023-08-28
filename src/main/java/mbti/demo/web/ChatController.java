@@ -31,14 +31,14 @@ public class ChatController {
         return "chat/chatList";
     }
 
-    @GetMapping("/chat/createRoom")  // GET 요청에 대한 처리 추가
-    public String showCreateRoomForm(Model model) {
-        List<ChatRoom> roomList = chatService.findAllRoom();
-        model.addAttribute("roomList", roomList);
-        return "community/index_login";  // 뷰 파일의 경로
-    }
+//    @GetMapping("/chat/createRoom")  // GET 요청에 대한 처리 추가
+//    public String showCreateRoomForm(Model model) {
+//        List<ChatRoom> roomList = chatService.findAllRoom();
+//        model.addAttribute("roomList", roomList);
+//        return "community/index_login";  // 뷰 파일의 경로
+//    }
 
-    @PostMapping("/chat/createRoom")  //방을 만들었으면 해당 방으로 가야지.
+    @PostMapping("/community")  //방을 만들었으면 해당 방으로 가야지.
     public String createRoom(Model model, @RequestParam String name, String username) {
 //        ChatRoom room = chatService.createRoom(name);
 //        model.addAttribute("room",room);

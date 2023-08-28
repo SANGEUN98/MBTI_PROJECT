@@ -7,8 +7,8 @@
         <selectKey keyProperty="id" resultType="java.lang.Long" order="BEFORE">
             SELECT member_seq.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO member (id, login_id, password, password2, name, email, phone_number,mbti)
-        VALUES (#{id}, #{loginId}, #{password}, #{password2}, #{name}, #{email}, #{phoneNumber}, #{mbti})
+        INSERT INTO member (id, login_id, password, password2, name, email, phone_number,mbti,nick_name)
+        VALUES (#{id}, #{loginId}, #{password}, #{password2}, #{name}, #{email}, #{phoneNumber}, #{mbti}, #{nickName})
     </insert>
 
 

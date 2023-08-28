@@ -2,8 +2,8 @@ package mbti.demo.config;
 
 import lombok.RequiredArgsConstructor;
 import mbti.demo.mybatis.*;
-import mbti.demo.repository.BestBookInterface;
-import mbti.demo.repository.BookInterface;
+import mbti.demo.repository.BestBookRepository;
+import mbti.demo.repository.BookRepository;
 import mbti.demo.repository.MovieRepository;
 import mbti.demo.service.*;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class MyBatisConfig {
         return new BookService(bookInterface(), bookMapper);
     }
     @Bean
-    public BookInterface bookInterface() {
+    public BookRepository bookInterface() {
         return new MyBatisBookRepository(bookMapper);
     }
 
@@ -41,7 +41,7 @@ public class MyBatisConfig {
         return new BestBookService(bestbookInterface());
     }
     @Bean
-    public BestBookInterface bestbookInterface() {
+    public BestBookRepository bestbookInterface() {
         return new MyBatisBestBookRepository(bestBookMapper);
     }
 }

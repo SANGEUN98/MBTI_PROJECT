@@ -11,20 +11,17 @@
 	<link rel="stylesheet" href="css/main.min.css" th:href="@{/css/main.min.css}">
 	<link rel="stylesheet" href="css/style.css"  th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="css/color.css"  th:href="@{/css/color.css}">
-	<link rel="stylesheet" href="css/responsive.css"  th:href="@{/css/reponsive.css}">
-
+	<link rel="stylesheet" href="css/responsive.css"  th:href="@{/css/responsive.css}">
+	<style>
+	</style>
 </head>
 <body>
+<div th:insert="~{/header_login.html}"></div>
 <!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
-	<form action="../community/index.html" method="post">
-		<section>
-			<div class="feature-photo">
-				<figure><img src="/images/resources/timeline.png" alt="" style="height: 400px"></figure>
-				<!--			<div class="add-btn">-->
-				<!--				<span>1205 followers</span>-->
-				<!--				<a href="#" title="" data-ripple="">Add Friend</a>-->
-				<!--			</div>-->
+	<section>
+		<div class="feature-photo">
+			<figure><img src="/images/resources/timeline.png" alt="" style="height: 400px"></figure>
 				<form class="edit-phto">
 					<i class="fa fa-camera-retro"></i>
 					<label class="fileContainer">
@@ -52,26 +49,17 @@
 							<div class="timeline-info">
 								<ul>
 									<li class="admin-name">
-										<h5 th:text="${member.getLoginId()}">CY</h5>
-										<span th:text="${member.getMbti()}">INFP</span>
-									</li>
-									<li>
-										<!--									<a class="active" href="timeline.html" title="" data-ripple="">time line</a>-->
-										<!--									<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>-->
-										<!--									<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>-->
-										<!--									<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>-->
-										<!--									<a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>-->
-										<!--									<a class="" href="about.html" title="" data-ripple="">about</a>-->
-										<!--									<a class="" href="#" title="" data-ripple="">more</a>-->
+										<h5 th:text = "${session.loginMember.getName()}">CY</h5>
+										<span th:text = "${session.loginMember.getMbti()}">INFP</span>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section><!-- top area -->
-		
+		</div>
+	</section>
+
 	<section>
 		<div class="gap gray-bg">
 			<div class="container-fluid">
@@ -113,14 +101,12 @@
 												<li class="nav-item">
 													<a href="#basic" class="nav-link active" data-toggle="tab" >Basic info</a>
 												</li>
-												<li class="nav-item">
-													<a href="#location" class="nav-link" data-toggle="tab" >location</a>
-												</li>
 											</ul>
 											<div class="tab-content">
 												<div class="tab-pane fade show active" id="basic" >
 													<ul class="basics">
 														<li th:text="${session.loginMember.getName()}"><i class="ti-user"></i>김철수</li>
+														<li th:text="${session.loginMember.getNickName()}"></li>
 														<li th:text="${session.loginMember.getPhoneNumber()}"><i class="ti-mobile"></i>010-1234-5678
 														<li th:text="${session.loginMember.getMbti()}"><i class="ti-agenda"></i>ISTJ </li>
 														<li th:text="${session.loginMember.getEmail()}"><i class="ti-email"></i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c4553494e515d55507c59515d5550125f5351">[email&#160;protected]</a></li>
@@ -136,165 +122,17 @@
 									</div>
 								</div>
 							</div><!-- centerl meta -->
-							<div class="col-lg-3">
-								<aside class="sidebar static">
-									<div class="widget friend-list stick-widget">
-										<h4 class="widget-title">Friends</h4>
-										<div id="searchDir"></div>
-										<ul id="people-list" class="friendz-list">
-											<li>
-												<figure>
-													<img src="/images/resources/user.png" alt="">
-													<span class="status f-online"></span>
-												</figure>
-												<div class="friendz-meta">
-													<a href="">인싸</a>
-													<i><a href="https://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f2859b9c869780819d9e969780b2959f939b9edc919d9f">[email&#160;protected]</a></i>
-												</div>
-											</li>
-										</ul>
-										<div class="chat-box">
-											<div class="chat-head">
-												<span class="status f-online"></span>
-												<h6>아싸</h6>
-												<div class="more">
-													<span><i class="ti-more-alt"></i></span>
-													<span class="close-mesage"><i class="ti-close"></i></span>
-												</div>
-											</div>
-											<div class="chat-list">
-												<ul>
-													<li class="me">
-														<div class="chat-thumb"><img src="/images/resources/user2.png" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																안녕~!
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="you">
-														<div class="chat-thumb"><img src="/images/resources/user.png" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																뭐해?
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-													<li class="me">
-														<div class="chat-thumb"><img src="/images/resources/user2.png" alt=""></div>
-														<div class="notification-event">
-															<span class="chat-message-item">
-																그냥 있지~
-															</span>
-															<span class="notification-date"><time datetime="2004-07-24T18:18" class="entry-date updated">Yesterday at 8:10pm</time></span>
-														</div>
-													</li>
-												</ul>
-												<form class="text-box">
-													<textarea placeholder=""></textarea>
-													<div class="add-smiles">
-														<span title="add icon" class="em em-expressionless"></span>
-													</div>
-													<div class="smiles-bunch">
-														<i class="em em---1"></i>
-														<i class="em em-smiley"></i>
-														<i class="em em-anguished"></i>
-														<i class="em em-laughing"></i>
-														<i class="em em-angry"></i>
-														<i class="em em-astonished"></i>
-														<i class="em em-blush"></i>
-														<i class="em em-disappointed"></i>
-														<i class="em em-worried"></i>
-														<i class="em em-kissing_heart"></i>
-														<i class="em em-rage"></i>
-														<i class="em em-stuck_out_tongue"></i>
-													</div>
-													<button type="submit"></button>
-												</form>
-											</div>
-										</div>
-									</div><!-- friends list sidebar -->
-								</aside>
-							</div><!-- sidebar -->
-						</div>	
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</section>
+	</form>
+	</div>
 
 	<footer>
 	</footer><!-- footer -->
-</div>
-	<div class="side-panel">
-		<h4 class="panel-title">General Setting</h4>
-		<form method="post">
-			<div class="setting-row">
-				<span>use night mode</span>
-				<input type="checkbox" id="nightmode1"/> 
-				<label for="nightmode1" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Notifications</span>
-				<input type="checkbox" id="switch22" /> 
-				<label for="switch22" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Notification sound</span>
-				<input type="checkbox" id="switch33" /> 
-				<label for="switch33" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>My profile</span>
-				<input type="checkbox" id="switch44" /> 
-				<label for="switch44" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Show profile</span>
-				<input type="checkbox" id="switch55" /> 
-				<label for="switch55" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-		</form>
-		<h4 class="panel-title">Account Setting</h4>
-		<form method="post">
-			<div class="setting-row">
-				<span>Sub users</span>
-				<input type="checkbox" id="switch66" /> 
-				<label for="switch66" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>personal account</span>
-				<input type="checkbox" id="switch77" /> 
-				<label for="switch77" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Business account</span>
-				<input type="checkbox" id="switch88" /> 
-				<label for="switch88" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Show me online</span>
-				<input type="checkbox" id="switch99" /> 
-				<label for="switch99" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Delete history</span>
-				<input type="checkbox" id="switch101" /> 
-				<label for="switch101" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-			<div class="setting-row">
-				<span>Expose author name</span>
-				<input type="checkbox" id="switch111" /> 
-				<label for="switch111" data-on-label="ON" data-off-label="OFF"></label>
-			</div>
-		</form>
-	</div><!-- side panel -->		
-	
-	<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/community/main.min.js" th:href="@{/js/community/main.min.js}"></script>
-	<script src="/js/community/script.js" th:href="@{/js/community/script.js}"></script>
-
-</body>	
+</body>
 
 </html>

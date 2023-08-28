@@ -9,13 +9,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@Getter
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-public class BaseTimeEntity {
-    @CreatedDate
-    private LocalDateTime created;
+// @Getter
+// @MappedSuperclass
+// @EntityListeners(AuditingEntityListener.class)
+// public class BaseTimeEntity {
+//     @CreatedDate
+//     private LocalDateTime created;
 
-    @LastModifiedBy
-    private LocalDateTime modified;
-}
+//     @LastModifiedBy
+//     private LocalDateTime modified;
+// }

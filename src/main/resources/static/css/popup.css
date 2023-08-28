@@ -42,8 +42,8 @@ button {
     border-radius: 10px;
     position: absolute;
     background-color: #fff;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    /*height: 760px;*/
     padding: 15px;
 }
 
@@ -65,14 +65,4 @@ li{list-style: none; font-size: 18px;}
 
 table{
     margin: 0 auto;
-}
-
-@font-face {
-    font-family: 'Dovemayo_gothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-    font-family: 'Dovemayo_gothic';
 }

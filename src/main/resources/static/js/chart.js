@@ -1,38 +1,14 @@
-export function chart(mbti) {
+export function chart(list) {
 
-var chartDataLabelsOptions = {
-
-    plugins: {
-        responsive: false,
-        maintainAspectRatio: false,
-        datalabels: {
-            font: { size: 18, weight: 'bold' },
-            color: 'gray',
-            formatter: function(value, context) {
-                return context.dataIndex + Math.round(value) + '%';
-            },
-        }
+// mbti 널 값 발생시 리스트 제외
+let mbtiList = [];
+list.forEach(element => {
+    if (element["mbti"] !== null){
+        mbtiList.push(element)
     }
-};
-
-    let mbtiList = [
-        {mbti:"INFP", cnt:5},
-        {mbti:"ISTP", cnt:7},
-        {mbti:"ENTJ", cnt:3},
-        {mbti:"ENTP", cnt:4},
-        {mbti:"INTP", cnt:1},
-    ]
-    // i = 13
-    // e = 7
-    // n = 13
-    // s = 7
-    // f = 5
-    // t = 15
-    // p = 17
-    // j = 3
-    console.log(mbtiList[0].mbti)
-    console.log(mbtiList[0].mbti[0])
-
+});
+console.log(mbtiList);
+    // mbti count
     let I1 = 0
     let E1 = 0
     let N1 = 0
@@ -51,7 +27,6 @@ var chartDataLabelsOptions = {
         let T = 0
         let P = 0
         let J = 0
-
         for (let j = 0; j < 4; j++) {
             if (mbtiList[i].mbti[j] == "I"){
                 I += 1
@@ -71,6 +46,7 @@ var chartDataLabelsOptions = {
                 J += 1
             }
         }
+        // 유형 * 유형 수
         I1 += I * mbtiList[i].cnt
         E1 +=E * mbtiList[i].cnt
         N1 +=N * mbtiList[i].cnt
@@ -79,73 +55,57 @@ var chartDataLabelsOptions = {
         T1 +=T * mbtiList[i].cnt
         P1 +=P * mbtiList[i].cnt
         J1 +=J * mbtiList[i].cnt
-
     }
-
-    // for (let i = 0; i < i; i++) {
-    //     for (let j = 0; j < 4; j++) {
-    //         if (mbtiList[i].mbti[j] == "I") {
-    //             I *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "E") {
-    //             E *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "N") {
-    //             N *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "S") {
-    //             S *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "F") {
-    //             F *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "T") {
-    //             T *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "P") {
-    //             P *= mbtiList[i].cnt
-    //         } else if (mbtiList[i].mbti[j] == "J") {
-    //             J *= mbtiList[i].cnt
-    //         }
-    //     }
-    // }
-    console.log("i = " + I1)
-    console.log("e = " + E1)
-    console.log("n = " + N1)
-    console.log("s = " + S1)
-    console.log("f = " + F1)
-    console.log("t = " + T1)
-    console.log("p = " + P1)
-    console.log("j = " + J1)
-
-        // i = 13
-        // e = 7
-        // n = 13
-        // s = 7
-        // f = 5
-        // t = 15
-        // p = 17
-        // j = 3
-
-
-var ctx1 = document.getElementById('chart1').getContext('2d');
-new Chart(ctx1, {
-    plugins: [ChartDataLabels],
-    type: 'bar',
-    data: {
-        labels: mbtiList.map(mbti => mbti.mbti),
-        datasets: [{
-            data: mbtiList.map((mbti=>mbti.cnt)),
-            backgroundColor: [
-                'rgba(204,102,102,0.2)', 'rgba(102,153,153,0.2)', 'rgba(255,153,153,0.2)', 'rgba(102,204,204,0.2)',
-                'rgba(153,204,204,0.2)', 'rgba(51,153,102,0.2)', 'rgba(153,255,255,0.2)', 'rgba(102,204,153,0.2)',
-                'rgba(204,153,153,0.2)', 'rgba(255,204,204,0.2)', 'rgba(51,204,153,0.2)', 'rgba(102,255,204,0.2)',
-                'rgba(204,153,51,0.2)', 'rgba(204,153,102,0.2)', 'rgba(255,204,102,0.2)', 'rgba(255,204,153,0.2)',
-            ],
-            borderColor: [
-                'rgba(204,102,102,1)', 'rgba(102,153,153,1)', 'rgba(255,153,153,1)', 'rgba(102,204,204,1)',
-                'rgba(153,204,204,1)', 'rgba(51,153,102,1)', 'rgba(153,255,255,1)', 'rgba(102,204,153,1)',
-                'rgba(204,153,153,1)', 'rgba(255,204,204,1)', 'rgba(51,204,153,1)', 'rgba(102,255,204,1)',
-                'rgba(204,153,51,1)', 'rgba(204,153,102,1)', 'rgba(255,204,102,1)', 'rgba(255,204,153,1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+        
+        console.log("i = " + I1)
+        console.log("e = " + E1)
+        console.log("n = " + N1)
+        console.log("s = " + S1)
+        console.log("f = " + F1)
+        console.log("t = " + T1)
+        console.log("p = " + P1)
+        console.log("j = " + J1)
+        
+    
+        // 차트 플러그인 옵션
+        let chartDataLabelsOptions = {
+            plugins: {
+                responsive: false,
+                maintainAspectRatio: false,
+                datalabels: {
+                    font: { size: 18, weight: 'bold' },
+                    color: 'gray',
+                    formatter: function (value, context) {
+                        return context.dataIndex + Math.round(value * 100) / 4 + "%";
+                    },
+                }
+            }
+        };
+    
+    var ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        plugins: [ChartDataLabels],
+        type: 'bar',
+        data: {
+            labels: mbtiList.map(mbti => mbti.mbti),
+            datasets: [{
+                data: mbtiList.map((mbti=>mbti.cnt)),
+                backgroundColor: [
+                    'rgba(204,102,102,0.2)', 'rgba(102,153,153,0.2)', 'rgba(255,153,153,0.2)', 'rgba(102,204,204,0.2)',
+                    'rgba(153,204,204,0.2)', 'rgba(51,153,102,0.2)', 'rgba(153,255,255,0.2)', 'rgba(102,204,153,0.2)',
+                    'rgba(204,153,153,0.2)', 'rgba(255,204,204,0.2)', 'rgba(51,204,153,0.2)', 'rgba(102,255,204,0.2)',
+                    'rgba(204,153,51,0.2)', 'rgba(204,153,102,0.2)', 'rgba(255,204,102,0.2)', 'rgba(255,204,153,0.2)',
+                ],
+                borderColor: [
+                    'rgba(204,102,102,1)', 'rgba(102,153,153,1)', 'rgba(255,153,153,1)', 'rgba(102,204,204,1)',
+                    'rgba(153,204,204,1)', 'rgba(51,153,102,1)', 'rgba(153,255,255,1)', 'rgba(102,204,153,1)',
+                    'rgba(204,153,153,1)', 'rgba(255,204,204,1)', 'rgba(51,204,153,1)', 'rgba(102,255,204,1)',
+                    'rgba(204,153,51,1)', 'rgba(204,153,102,1)', 'rgba(255,204,102,1)', 'rgba(255,204,153,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
         plugins: { legend: { display: false } }
     }
 });

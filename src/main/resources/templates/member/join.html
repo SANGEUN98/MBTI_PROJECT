@@ -1,233 +1,184 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>회원가입</title>
-  <link rel="stylesheet" href="css/mainstyle.css"
-        th:href="@{/css/mainstyle.css}">
-  <link rel="stylesheet" href="css/join.css"
-  th:href="@{/css/join.css}">
-<style>
-    .alertTxt{
-        color: red;
+  <link rel="stylesheet" href="css/mainstyle.css" th:href="@{/css/mainstyle.css}">
+  <link rel="stylesheet" href="css/join.css" th:href="@{/css/join.css}">
+
+  <style>
+    .alertTxt {
+      color: red;
     }
-</style>
+
+    .pl {
+      width: 100%;
+      border: 1px solid #C4C4C4;
+      box-sizing: border-box;
+      padding: 12px 13px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .pl:focus {
+      border: 1px solid #3E7DAB;
+      box-sizing: border-box;
+      outline: 3px solid #F8E4FF;
+    }
+  </style>
 </head>
 
 <body>
-<!-- header -->
-<div id="header">
+  <!-- header -->
+  <div id="header">
     <h2>회원가입</h2>
-</div>
+  </div>
 
-<!-- wrapper -->
-<div id="wrapper">
+  <!-- wrapper -->
+  <div id="wrapper">
     <form action="join.html" th:action th:object="${member}" method="post">
-  <!-- content-->
-  <div id="content">
+      <!-- content-->
+      <div id="content">
 
-    <!-- ID -->
-    <div>
-      <h3 class="join_title">
-        <label for="loginId">아이디</label>
-      </h3>
-      <span class="box int_id">
-                        <input type="text" id="loginId" class="int" maxlength="20" th:field="*{loginId}" required>
-                    </span>
-<!--      <div class="error_next_box"></div>-->
-    </div>
-      <span class="alertTxt" th:errors= "*{loginId}"> 아이디 중복</span>
-    <!-- PW1 -->
-    <div>
-      <h3 class="join_title"><label for="password">비밀번호</label></h3>
-      <span class="box int_pass">
-                        <input type="password" id="password" class="int" maxlength="20" th:field="*{password}" required>
-                        <span id="alertTxt">사용불가</span>
-                    </span>
-      <span class="error_next_box"></span>
-    </div>
+        <!-- ID -->
+        <div>
+          <h3 class="join_title">
+            <label for="loginId">아이디</label>
+          </h3>
+          <span class="box int_id">
+            <input type="text" id="loginId" class="int" maxlength="20" th:field="*{loginId}" required>
+          </span>
+          <!--      <div class="error_next_box"></div>-->
+        </div>
+        <span class="alertTxt" th:errors="*{loginId}"> 아이디 중복</span>
+        <!-- PW1 -->
+        <div>
+          <h3 class="join_title"><label for="password">비밀번호</label></h3>
+          <span class="box int_pass">
+            <input type="password" id="password" class="int" maxlength="20" th:field="*{password}" required>
+            <span id="alertTxt">사용불가</span>
+          </span>
+          <span class="error_next_box"></span>
+        </div>
 
-    <!-- PW2 -->
-    <div>
-      <h3 class="join_title"><label for="password2">비밀번호 재확인</label></h3>
-      <span class="box int_pass_check">
-                        <input type="password" id="password2" class="int" maxlength="20" th:field="*{password2}" required>
-                    </span>
-      <span class="error_next_box"></span>
-    </div>
-      <script>
+        <!-- PW2 -->
+        <div>
+          <h3 class="join_title"><label for="password2">비밀번호 재확인</label></h3>
+          <span class="box int_pass_check">
+            <input type="password" id="password2" class="int" maxlength="20" th:field="*{password2}" required>
+          </span>
+          <span class="error_next_box"></span>
+        </div>
+        <script>
           var password = document.getElementById("password")
-              ,password2 = document.getElementById("password2");
+            , password2 = document.getElementById("password2");
 
-          function validatePassword(){
-              if(password.value != password2.value) { // 만일 두 인풋 필드값이 같지 않을 경우
-                  // setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
-                  password2.setCustomValidity("패스워드가 일치하지 않습니다");
-              }
-              else { // 만일 두 인풋 필드값이 같을 경우
-                  // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
-                  // 따라서 빈값을 주어 submit 처리되게 한다
-                  password2.setCustomValidity('');
-              }
+          function validatePassword() {
+            if (password.value != password2.value) { // 만일 두 인풋 필드값이 같지 않을 경우
+              // setCustomValidity의 값을 지정해 무조건 경고 표시가 나게 하고
+              password2.setCustomValidity("패스워드가 일치하지 않습니다");
+            }
+            else { // 만일 두 인풋 필드값이 같을 경우
+              // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
+              // 따라서 빈값을 주어 submit 처리되게 한다
+              password2.setCustomValidity('');
+            }
           }
 
           password.onchange = validatePassword;
           password2.onkeyup = validatePassword;
-      </script>
+        </script>
 
-    <!-- NAME -->
-    <div>
-      <h3 class="join_title"><label for="name">이름</label></h3>
-      <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20" th:field="*{name}">
-                    </span>
-      <span class="error_next_box"></span>
-    </div>
-
-    <!-- BIRTH -->
-<!--    <div>-->
-<!--      <h3 class="join_title"><label for="yy">생년월일</label></h3>-->
-
-<!--      <div id="bir_wrap">-->
-<!--        &lt;!&ndash; BIRTH_YY &ndash;&gt;-->
-<!--        <div id="bir_yy">-->
-<!--                            <span class="box">-->
-<!--                                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)">-->
-<!--                            </span>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; BIRTH_MM &ndash;&gt;-->
-<!--        <div id="bir_mm">-->
-<!--                            <span class="box">-->
-<!--                                <select id="mm" class="sel">-->
-<!--                                    <option>월</option>-->
-<!--                                    <option value="01">1</option>-->
-<!--                                    <option value="02">2</option>-->
-<!--                                    <option value="03">3</option>-->
-<!--                                    <option value="04">4</option>-->
-<!--                                    <option value="05">5</option>-->
-<!--                                    <option value="06">6</option>-->
-<!--                                    <option value="07">7</option>-->
-<!--                                    <option value="08">8</option>-->
-<!--                                    <option value="09">9</option>-->
-<!--                                    <option value="10">10</option>-->
-<!--                                    <option value="11">11</option>-->
-<!--                                    <option value="12">12</option>-->
-<!--                                </select>-->
-<!--                            </span>-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; BIRTH_DD &ndash;&gt;-->
-<!--        <div id="bir_dd">-->
-<!--                            <span class="box">-->
-<!--                                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">-->
-<!--                            </span>-->
-<!--        </div>-->
-
-<!--      </div>-->
-<!--      <span class="error_next_box"></span>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; GENDER &ndash;&gt;-->
-<!--    <div>-->
-<!--      <h3 class="join_title"><label for="gender">성별</label></h3>-->
-<!--      <span class="box gender_code">-->
-<!--                        <select id="gender" class="sel">-->
-<!--                            <option>성별</option>-->
-<!--                            <option value="M">남자</option>-->
-<!--                            <option value="F">여자</option>-->
-<!--                        </select>-->
-<!--                    </span>-->
-<!--      <span class="error_next_box">필수 정보입니다.</span>-->
-<!--    </div>-->
-
-    <!-- EMAIL -->
-    <div>
-      <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
-      <span class="box int_email">
-                        <input type="email" id="email" class="int" maxlength="100" placeholder="선택입력" th:field="*{email}">
-                    </span>
-      <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
-    </div>
-
-    <!-- MOBILE -->
-    <div>
-      <h3 class="join_title"><label for="phoneNumber">휴대전화</label></h3>
-      <span class="box int_mobile">
-                        <input type="tel" id="phoneNumber" class="int" maxlength="16" placeholder="전화번호 입력" th:field="*{phoneNumber}">
-                    </span>
-      <span class="error_next_box"></span>
-    </div>
-
-    <!--MBTI-->
-      <div>
-          <h3 class="join_title"><label>MBTI</label></h3>
-          <span class="box int_mobile">
-                        <input type="text" id="mbti" class="int" maxlength="16" placeholder="MBTI 입력" th:field="*{mbti}">
-                    </span>
-          <span class="error_next_box"></span>
-<!--          <span class="box int_mobile">-->
-<!--              <select id="box int_mobile" class="sel">-->
-<!--                  <option>MBTI</option>-->
-<!--                  <option value="01">1</option>-->
-<!--                  <option value="02">2</option>-->
-<!--                  <option value="03">3</option>-->
-<!--                  <option value="04">4</option>-->
-<!--                  <option value="05">5</option>-->
-<!--                  <option value="06">6</option>-->
-<!--                  <option value="07">7</option>-->
-<!--                  <option value="08">8</option>-->
-<!--                  <option value="09">9</option>-->
-<!--                  <option value="10">10</option>-->
-<!--                  <option value="11">11</option>-->
-<!--                  <option value="12">12</option>-->
-<!--              </select>-->
+        <!-- NAME -->
+        <div>
+          <h3 class="join_title"><label for="name">이름</label></h3>
+          <span class="box int_name">
+            <input type="text" id="name" class="int" maxlength="5" th:field="*{name}" required>
           </span>
-      </div>
+          <span class="error_next_box"></span>
+        </div>
+        <!-- NICKNAME -->
+        <div>
+          <h3 class="join_title"><label for="nickName">닉네임</label></h3>
+          <span class="box int_name">
+            <input type="text" name="nickName" class="int" maxlength="10" th:field="*{nickName}" required>
+          </span>
+          <span class="error_next_box"></span>
+        </div>
 
+        <!-- EMAIL -->
+        <div>
+          <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
+          <span class="box int_email">
+            <input type="email" id="email" class="int" maxlength="100" placeholder="선택입력" th:field="*{email}">
+          </span>
+          <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+        </div>
 
+        <!-- MOBILE -->
+        <div>
+          <h3 class="join_title"><label for="phoneNumber">휴대전화</label></h3>
+          <span class="box int_mobile">
+            <input type="tel" id="phoneNumber" class="int" maxlength="16" placeholder="전화번호 입력"
+              th:field="*{phoneNumber}">
+          </span>
+          <span class="error_next_box"></span>
+        </div>
 
-      <!-- JOIN BTN-->
-      <div class="btn_area">
+        <!--MBTI-->
+        <div>
+          <h3 class="join_title"><label>MBTI</label></h3>
+          <button style="float: right;"><a class="btn btn-light btn-xl" href="/static/test.html" th:href="@{/test}"
+              th:target="_blank">지금 검사하실 수 있습니다!</a></button><br>
+          <select th:field="*{mbti}" id="box int_mobile" class="pl" required="required">
+            <option value="">====MBTI====</option>
+            <option value="INTJ">INTJ</option>
+            <option value="INTP">INTP</option>
+            <option value="ENTJ">ENTJ</option>
+            <option value="ENTP">ENTP</option>
+            <option value="ESTJ">ESTJ</option>
+            <option value="ESFJ">ESFJ</option>
+            <option value="ISTJ">ISTJ</option>
+            <option value="ISFJ">ISFJ</option>
+            <option value="ENFP">ENFP</option>
+            <option value="ENFJ">ENFJ</option>
+            <option value="INFJ">INFJ</option>
+            <option value="INFP">INFP</option>
+            <option value="ESTP">ESTP</option>
+            <option value="ESFP">ESFP</option>
+            <option value="ISTP">ISTP</option>
+            <option value="ISFP">ISFP</option>
+          </select>
+        </div>
+
+        <!-- JOIN BTN-->
+        <div class="btn_area">
           <table>
-              <tr>
-                  <td><button type="submit" id="btnJoin">
-                      <span>가입하기</span>
-                  </button></td>
-                  <td><button type="button" id="btnJoin"
-                              onclick="location.href='main.html'"
-                              th:onclick="|location.href='@{/}'|">
-                      <span>돌아가기</span>
-                  </button></td>
-              </tr>
+            <tr>
+              <td><button type="submit" id="btnJoin">
+                  <span>가입하기</span>
+                </button></td>
+              <td><button type="button" id="btnJoin" onclick="location.href='main.html'"
+                  th:onclick="|location.href='@{/}'|">
+                  <span>돌아가기</span>
+                </button></td>
+            </tr>
           </table>
-      </div><br>
+        </div><br>
 
 
 
-  </div>
-  <!-- content-->
+      </div>
+      <!-- content-->
     </form>
 
-</div>
-<button type="button" class="submit-btn" onclick="startMbtiTest()">검사시작</button>
-<!-- wrapper -->
-<script>
+  </div>
+  <!--<button type="button" class="submit-btn" onclick="startMbtiTest()">검사시작</button>-->
+  <!-- wrapper -->
 
-    function startMbtiTest() {
-
-        fetch('/start_mbti_test', {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message + ' 결과: ' + data.result);
-                window.location.href = data.result;
-            })
-            .catch(error => {
-                console.error('에러 발생:', error);
-            });
-    }
-</script>
 </body>
+
 </html>

@@ -31,32 +31,36 @@ public class Member {
     // 사용지 전화번호
     private String phoneNumber;
     // 사용자 mbti
-     private String mbti;
+    private String mbti;
+    // 사용자 닉네임
+    private String nickName;
 
     // 기본 생성자
     public Member(){}
 
     // 필수 항목만 입력
-    public Member(String loginId, String password, String password2, String name, String mbti) {
+    public Member(String loginId, String password, String password2, String name, String mbti, String nickName) {
         this.loginId = loginId;
         this.password = password;
         this.password2 = password2;
         this.name = name;
         this.mbti = mbti;
+        this.nickName = nickName; 
     }
 
     // 선택 중 이메일만 입력
-    public Member(String loginId, String password, String password2, String name, String email, String mbti) {
+    public Member(String loginId, String password, String password2, String name, String email, String mbti, String nickName) {
         this.loginId = loginId;
         this.password = password;
         this.password2 = password2;
         this.name = name;
         this.email = email;
         this.mbti = mbti;
+        this.nickName = nickName;
     }
 
     // 모두 입력
-    public Member(String loginId, String password, String password2, String name, String email, String phoneNumber, String mbti) {
+    public Member(String loginId, String password, String password2, String name, String email, String phoneNumber, String mbti, String nickName) {
         this.loginId = loginId;
         this.password = password;
         this.password2 = password2;
@@ -64,5 +68,6 @@ public class Member {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.mbti = mbti;
+        this.nickName = nickName;
     }
 }
