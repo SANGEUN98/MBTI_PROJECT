@@ -2,7 +2,7 @@ export function bestBookForm(lists) {
     const form1 = document.getElementById('form1')
     const form2 = document.getElementById('form2')
     console.log(lists);
-    let abc = []
+    let abc = [1]
     let list = []
     for (let i = 0; i < lists.length; i++) {
         let abc = []
@@ -10,7 +10,7 @@ export function bestBookForm(lists) {
         abc.push(lists[i].title)
         abc.push(lists[i].author)
         abc.push(lists[i].rank)
-        abc.push(lists[i].info)
+        abc.push(lists[i].description)
         abc.push(lists[i].link)
         list.push(abc)
     }

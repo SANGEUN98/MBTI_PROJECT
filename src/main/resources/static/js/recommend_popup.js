@@ -24,8 +24,8 @@ export function DataForm(lists) {
         const img = document.createElement('img');
         const button1 = document.createElement('button')
         div4.setAttribute("name", "button")
-        button1.setAttribute('name', 'button1')
-        button1.setAttribute('name', 'button1')
+        button1.setAttribute('name', 'button3')
+        button1.setAttribute('name', 'button3')
         button1.textContent = '정보'
         console.log(list[i]);
         div1.textContent = list[i][0];

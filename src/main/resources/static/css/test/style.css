@@ -1,0 +1,168 @@
+/* 
+#mbti-question : mbti 문항 전체를 포함한 폼
+.mbti-text : 문항 텍스트
+.mbti-check-boxs : 동의 비동의를 포함한 체크박스 전체 텍스트는 b
+.mbti-check-box : 개별 체크 박스
+.mbti-submit : submit 버튼 
+
+*/
+
+/* 조건에 따라 히든 클래스가 부여되어 사라지게 됨 */
+.hidden {
+    display:none;
+}
+
+#mbti-question {
+    text-align: center;
+}
+
+.mbti-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: #576071;
+}
+
+
+.mbti-check-boxs {
+    margin: 0 auto;
+    height: 45px;
+    /* margin-top: 45px; */
+    /* margin-bottom: 90px; */
+}
+
+.mbti-check-boxs b{
+    position: relative;
+    bottom: 32.5px;
+    font-size: 20px;
+
+    
+}
+
+.mbti-check-boxs b:first-child  {
+    color : #89b1ed;
+}
+
+.mbti-check-boxs b:last-child  {
+    color : #fc8d8d;
+}
+
+.mbti-submit {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    top: 100px
+}
+
+input {
+    position: relative;
+    bottom: 32.5px;
+    display: none;
+}
+
+label[name="0"],
+label[name="6"]
+{
+    border: solid 1px black;
+    width: 45px;
+    height: 45px;
+}
+label[name="1"],
+label[name="5"]
+{
+    position: relative;
+    bottom: 5px;
+    border: solid 1px black;
+    width: 35px;
+    height: 35px;
+}
+label[name="2"],
+label[name="4"]
+{
+    position: relative;
+    bottom: 7.5px;
+    border: solid 1px black;
+    width: 30px;
+    height: 30px;
+}
+label[name="3"]
+{
+    position: relative;
+    bottom: 10px;
+    border: solid 1px #576071;
+    width: 25px;
+    height: 25px;
+}
+
+label[name="0"],
+label[name="1"],
+label[name="2"]
+{
+    border: solid 2px #89B5F0;
+}
+
+label[name="3"]
+{
+    border: solid 2px #9B9FAA;
+}
+
+label[name="4"],
+label[name="5"],
+label[name="6"] 
+{
+    border: solid 2px #fc8d8d;
+}
+
+label[name="0"]:hover,
+label[name="1"]:hover,
+label[name="2"]:hover
+{
+    background-color: #89B5F0;
+}
+
+label[name="3"]:hover
+{
+    background-color: #9B9FAA;
+}
+
+label[name="4"]:hover,
+label[name="5"]:hover,
+label[name="6"]:hover 
+{
+    background-color: #fc8d8d;
+}
+
+input+label {
+    display: inline-block;
+    border: 2px solid #bcbcbc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[name="0"]:checked+label,
+input[name="1"]:checked+label,
+input[name="2"]:checked+label
+{
+    background-color: #89b1ed;
+    /* border: 2px solid black;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #576071; */
+}
+
+input[name="4"]:checked+label,
+input[name="5"]:checked+label,
+input[name="6"]:checked+label
+{
+    background-color: #fc8d8d;
+}
+
+input[name="3"]:checked+label
+{
+    background-color: #9B9FAA;
+}
+
+
+label {
+    margin: 15px;
+}

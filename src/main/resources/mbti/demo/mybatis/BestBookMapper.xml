@@ -10,7 +10,7 @@
                사진 as img,
                작가 as author,
                가격 as price,
-               정보 as info,
+               정보 as description,
                링크 as link
         from best_book
         order by 순위 asc

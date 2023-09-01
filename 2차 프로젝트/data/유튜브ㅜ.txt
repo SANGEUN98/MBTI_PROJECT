@@ -1,0 +1,30 @@
+AIzaSyBXMz6OWGKGffzDMZEgnaX-vyiSXRuO4pI
+
+https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyBXMz6OWGKGffzDMZEgnaX-vyiSXRuO4pI
+
+
+id - videoId
+snippet - publishedAt, publishedAt
+          - thumbnails - default - url
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <iframe
+            id="ytplayer"
+            type="text/html"
+            width="720"
+            height="405"
+            src="https://www.youtube.com/embed/M7lc1UVf-VE"
+            frameborder="0"
+            allowfullscreen="allowfullscreen"></iframe>
+    </body>
+</html>

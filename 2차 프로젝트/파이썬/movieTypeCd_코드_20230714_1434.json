@@ -1,0 +1,27 @@
+[
+    {
+        "engNm": "Feature",
+        "fullCd": "220101",
+        "korNm": "장편"
+    },
+    {
+        "engNm": "Short",
+        "fullCd": "220102",
+        "korNm": "단편"
+    },
+    {
+        "engNm": "Omnibus",
+        "fullCd": "220103",
+        "korNm": "옴니버스"
+    },
+    {
+        "engNm": "",
+        "fullCd": "220104",
+        "korNm": "온라인전용"
+    },
+    {
+        "engNm": "",
+        "fullCd": "220199",
+        "korNm": "기타"
+    }
+]

@@ -10,6 +10,7 @@ form {
 .music-list{
     list-style-type: none;
     border-bottom: 1px solid black;
+    background-color: rgb(247, 244, 244);
 }
 
 li div {
@@ -21,6 +22,7 @@ li div {
     list-style-type: none;
     border-top: 2px solid black;
     border-bottom: 1px solid black;
+    
 }
 
 #mbti-button-div{
@@ -45,13 +47,19 @@ a{
 div[name="순위"] {
     position: relative;
     right: 45px;
+    font-weight: bold;
+    font-size: 18px;
 }
 div[name="곡정보"] {
     width: 450px;
+    font-weight: bold;
+    font-size: 18px;
 }
 div[name="아티스트"] {
     position: relative;
     left: 10px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 

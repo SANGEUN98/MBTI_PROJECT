@@ -34,10 +34,10 @@ public class MovieService implements MovieServiceInterface {
         List<Movie> movieList = movieMapper.findByGenre(rowBounds,genre);
         List<Movie> movieSize = movieMapper.findByGenre(genre);
         
-        int fageSize = movieSize.size();
+        int pageSize = movieSize.size();
 
 
-        return new PageImpl<>(movieList, pageable, fageSize);
+        return new PageImpl<>(movieList, pageable, pageSize);
     }
 
     // 일반적
@@ -74,9 +74,11 @@ public class MovieService implements MovieServiceInterface {
         RowBounds rowBounds = new RowBounds(offset, limit);
 
         List<Movie> movieList = movieMapper.findByAdministratorType(rowBounds);
-        long totalCount = movieMapper.countTotalMovies();
 
-        return new PageImpl<>(movieList, pageable, totalCount);
+        List<Movie> movieSize= movieMapper.findByAdministratorType();
+        int pageSize = movieSize.size();
+
+        return new PageImpl<>(movieList, pageable, pageSize);
     }
 
     @Override
@@ -86,9 +88,10 @@ public class MovieService implements MovieServiceInterface {
         RowBounds rowBounds = new RowBounds(offset, limit);
 
         List<Movie> movieList = movieMapper.findByExplorerType(rowBounds);
-        long totalCount = movieMapper.countTotalMovies();
+        List<Movie> movieSize= movieMapper.findByExplorerType();
+        int pageSize = movieSize.size();
 
-        return new PageImpl<>(movieList, pageable, totalCount);
+        return new PageImpl<>(movieList, pageable, pageSize);
     }
 
     @Override
@@ -98,9 +101,10 @@ public class MovieService implements MovieServiceInterface {
         RowBounds rowBounds = new RowBounds(offset, limit);
 
         List<Movie> movieList = movieMapper.findByDiplomaticType(rowBounds);
-        long totalCount = movieMapper.countTotalMovies();
+        List<Movie> movieSize= movieMapper.findByAdministratorType();
+        int pageSize = movieSize.size();
 
-        return new PageImpl<>(movieList, pageable, totalCount);
+        return new PageImpl<>(movieList, pageable, pageSize);
     }
 
     @Override
@@ -110,9 +114,10 @@ public class MovieService implements MovieServiceInterface {
         RowBounds rowBounds = new RowBounds(offset, limit);
 
         List<Movie> movieList = movieMapper.findByAnalystType(rowBounds);
-        long totalCount = movieMapper.countTotalMovies();
+        List<Movie> movieSize= movieMapper.findByAnalystType();
+        int pageSize = movieSize.size();
 
-        return new PageImpl<>(movieList, pageable, totalCount);
+        return new PageImpl<>(movieList, pageable, pageSize);
     }
 
     // 박스오피스

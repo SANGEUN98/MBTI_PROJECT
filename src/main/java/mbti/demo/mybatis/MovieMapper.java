@@ -19,21 +19,25 @@ public interface MovieMapper {
 //    List<Movie> findByAnalystType();
     // 페이징용
     List<Movie> findByAnalystType(RowBounds rowBounds);
+    List<Movie> findByAnalystType();
 
     // 일반
 //    List<Movie> findByDiplomaticType();
     // 페이징용
     List<Movie> findByDiplomaticType(RowBounds rowBounds);
+    List<Movie> findByDiplomaticType();
 
     // 일반
 //    List<Movie> findByAdministratorType();
     // 페이징용
     List<Movie> findByAdministratorType(RowBounds rowBounds);
+    List<Movie> findByAdministratorType();
 
     // 일반
 //    List<Movie> findByExplorerType();
     // 페이징용
     List<Movie> findByExplorerType(RowBounds rowBounds);
+    List<Movie> findByExplorerType();
 
     // 일반
 //    List<Movie> findAll();

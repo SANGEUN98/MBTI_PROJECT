@@ -25,7 +25,7 @@
 <body>
 <div th:insert="~{${login}}"></div>
 <div class="ext-gap bluesh high-opacity">
-    <div class="content-bg-wrap2" style="background: url(/images/resources/boxmovie.jpg)" ></div>
+    <div class="content-bg-wrap2" style="background: url(/images/resources/boxmovie.jpg)"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -45,7 +45,7 @@
 
 </form>
 
-<footer></footer>
+<div th:insert="~{footer.html}"></div>
 
 <script type="module" th:inline="javascript">
     import {MovieForm} from '/js/movie/box_popup.js'

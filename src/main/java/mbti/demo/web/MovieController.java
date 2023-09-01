@@ -43,7 +43,6 @@ public class MovieController {
         else {
             login="header_login.html";
         }
-        System.out.println(movieServiceInterface.findByDailyBox(pageable));
 
         model.addAttribute("login", login);
         Page<BoxMovie> boxMoviePage = movieServiceInterface.findByDailyBox(pageable);

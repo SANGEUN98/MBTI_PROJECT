@@ -10,7 +10,7 @@ public class RecommendationResponse {
     private Map<String, List<List<Object>>> recommendations;
 
     @Data
-    public static class Recommendation {
+    public static class Recommendations {
         private String movieName;
         private double similarityScore;
         private String info;

@@ -157,6 +157,7 @@ if ($.isFunction($.fn.loadMoreResults)) {
 		}
 	});	
 }
+
 	//===== owl carousel  =====//
 	if ($.isFunction($.fn.owlCarousel)) {
 		$('.sponsor-logo').owlCarousel({
@@ -328,7 +329,7 @@ $(document).ready(function() {
 					var comment = response[i];
 					var loginId = comment.loginId || "Anonymous";
 					var comment_HTML = '<li><div class="comet-avatar"><img src="/images/resources/user2.png" alt=""></div><div class="we-comment"><div class="coment-head"><h5><a href="time-line.html" title="">' + loginId + '</a></h5><a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a></div><p>' + comment.text + '</p></div></li>';
-					commentList.prepend(comment_HTML); // 새 댓글을 목록의 맨 위에 추가
+					// commentList.prepend(comment_HTML); // 새 댓글을 목록의 맨 위에 추가
 				}
 			}
 		},
@@ -362,6 +363,32 @@ $(document).ready(function() {
 		}
 	});
 });
+
+// 좋아요
+	function likeCommunity(communityId) {
+		$.ajax({
+			type: "POST",
+			url: "/community/like/" + communityId,
+			success: function(response) {
+				if (response.success) {
+					var newLikeCount = response.newLikeCount;
+					var likeCountElement = $(`i.ti-heart[data-community-id="${communityId}"]`).siblings("ins");
+					likeCountElement.text(newLikeCount);
+				} else {
+					console.error("좋아요 처리 실패");
+				}
+			},
+			error: function(error) {
+				console.error("좋아요 요청 오류:", error);
+			}
+		});
+	}
+	$(document).ready(function() {
+		$("i.ti-heart").click(function() {
+			var communityId = $(this).data("community-id");
+			likeCommunity(communityId);
+		});
+	});
 
 //inbox page 	
 //***** Message Star *****//  

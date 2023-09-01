@@ -172,7 +172,7 @@
             <li th:text="|${i.getKeyword9()}|"></li>
             <li th:text="|${i.getKeyword10()}|"></li>
             <hr>
-            <h4>추천 직업</h4>
+            <h4>직업 통계</h4>
             <img th:src="|${i.getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
@@ -197,7 +197,7 @@
             <li th:text="|${information[rowStat.index + 1].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 1].getKeyword10()}|"></li>
             <hr>
-            <h4>추천 직업</h4>
+            <h4>직업 통계</h4>
             <img th:src="|${information[rowStat.index + 1].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
@@ -222,7 +222,7 @@
             <li th:text="|${information[rowStat.index + 2].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 2].getKeyword10()}|"></li>
             <hr>
-            <h4>추천 직업</h4>
+            <h4>직업 통계</h4>
             <img th:src="|${information[rowStat.index + 2].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
@@ -247,7 +247,7 @@
             <li th:text="|${information[rowStat.index + 3].getKeyword9()}|"></li>
             <li th:text="|${information[rowStat.index + 3].getKeyword10()}|"></li>
             <hr>
-            <h4>추천 직업</h4>
+            <h4>직업 통계</h4>
             <img th:src="|${information[rowStat.index + 3].getImg()}|">
           </ul>
           <button class="closeBtn">닫기</button>
@@ -256,7 +256,7 @@
     </td>
   </tr>
 </table>
-<footer></footer>
+<div th:insert="~{footer.html}"></div>
 
 <script type="module" th:inline="javascript">
   import { chart } from '/js/chart.js'

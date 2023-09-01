@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<title>Community</title>
+
+	<link rel="stylesheet" href="css/main.min.css" th:href="@{/css/main.min.css}">
+	<link rel="stylesheet" href="css/style.css"  th:href="@{/css/style.css}">
+	<link rel="stylesheet" href="css/color.css"  th:href="@{/css/color.css}">
+	<link rel="stylesheet" href="css/responsive.css"  th:href="@{/css/reponsive.css}">
+
+
+</head>
+<body>
+<div th:insert="~{/header_login.html}"></div>
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+	<section>
+		<div class="ext-gap bluesh high-opacity">
+			<div class="content-bg-wrap" style="background: url(/images/resources/community.jpg)"></div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="top-banner">
+							<h1>COMMUNITY</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- top area animated -->
+	<section>
+		<div class="gap gray-bg">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row" id="page-contents">
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+									<div class="widget">
+										<h4 class="widget-title"></h4>
+										<ul class="naves">
+											<li>
+												<i class="ti-clipboard"></i>
+												<a href="index_login.html" title=""th:href="@{/community}">게시물</a>
+											</li>
+											<li>
+												<i class="ti-files"></i>
+												<a href="timeline.html" title="">내 게시물</a>
+											</li>
+											<li>
+												<i class="ti-comments-smiley"></i>
+												<a href="messages.html" title="">메세지</a>
+											</li>
+											<li>
+												<i class="ti-user"></i>
+												<a href="timeline-friends.html" title="">사용자</a>
+											</li>
+<!--											<li>-->
+<!--												<i class="ti-share"></i>-->
+<!--												<a href="people-nearby.html" title="">동네친구</a>-->
+<!--											</li>-->
+										</ul>
+									</div><!-- Shortcuts -->
+									<div class="widget stick-widget">
+										<h4 class="widget-title">Popular Tags</h4>
+										<ul class="followers">
+											<li>
+												<h5>#MBTI</h5>
+											</li>
+											<li>
+												<h5>#INFJ</h5>
+											</li>
+											<li>
+												<h5>#ISFP</h5>
+											</li>
+											<li>
+												<h5>#ISTJ</h5>
+											</li>
+											<li>
+												<h5>#ENTP</h5>
+											</li>
+											<li>
+												<h5>#ESFP</h5>
+											</li>
+										</ul>
+									</div><!-- popular tags -->
+								</aside>
+							</div><!-- sidebar -->
+							<div class="col-lg-6">
+								<div class="central-meta">
+									<div class="new-postbox">
+										<figure>
+											<img src="/images/resources/user.png" alt="">
+										</figure>
+										<div class="newpst-input">
+											<form th:action="@{/community/{memberId}(memberId=${session.loginMember.getLoginId()})}" method="post">
+												<textarea name="Content"></textarea>
+												<div class="attachments">
+													<ul>
+														<li>
+															<i class="fa fa-music"></i>
+															<label class="fileContainer">
+																<input type="file">
+															</label>
+														</li>
+														<li>
+															<i class="fa fa-image"></i>
+															<label class="fileContainer">
+																<input type="file">
+															</label>
+														</li>
+														<li>
+															<i class="fa fa-video-camera"></i>
+															<label class="fileContainer">
+																<input type="file">
+															</label>
+														</li>
+														<li>
+															<i class="fa fa-camera"></i>
+															<label class="fileContainer">
+																<input type="file">
+															</label>
+														</li>
+														<li>
+															<button type="submit">Post</button>
+														</li>
+													</ul>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div><!-- add post new box -->
+								<div class="loadMore">
+									<div class="central-meta item" th:each="list : ${list}">
+										<div class="user-post">
+											<div class="friend-info">
+												<figure>
+													<img src="/images/resources/user.png" alt="">
+												</figure>
+												<div class="friend-name">
+													<ins><a href="" title="" th:text="${session.loginMember.getLoginId()}">CY</a></ins>
+													<span th:text="${list.created}"></span>
+												</div>
+												<li>
+													<a th:href="@{/community/delete(id=${list.id})}">삭제</a>
+												</li>
+												<div class="post-meta">
+													<img src="/images/resources/user-post.jpg" alt="">
+													<div class="description">
+														<p th:text="${list.content}"><a href="#" title="">#INFP!</a> 나 고민이 있는데 들어줄 사람! 내 친구는 나랑 MBTI가 완전 정반대라서 이해를 못해줌,, 그래서 나 이해해줄 사람 찾고 있음ㅠㅠ
+														</p>
+													</div>
+													<div class="we-video-info">
+														<ul>
+															<li>
+															<span class="views" data-toggle="tooltip" title="views">
+																<i class="fa fa-eye"></i>
+																<ins>1.2k</ins>
+															</span>
+															</li>
+															<li>
+															<span class="comment" data-toggle="tooltip" title="Comments">
+																<i class="fa fa-comments-o"></i>
+																<ins>52</ins>
+															</span>
+															</li>
+															<li>
+															<span class="like" data-toggle="tooltip" title="like">
+																<i class="ti-heart"></i>
+																<ins>2.2k</ins>
+															</span>
+															</li>
+															<li class="social-media">
+																<div class="menu">
+																	<div class="btn trigger"><i class="fa fa-share-alt"></i></div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-facebook"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-twitter"></i></a></div>
+																	</div>
+																	<div class="rotater">
+																		<div class="btn btn-icon"><a href="#" title=""><i class="fa fa-instagram"></i></a></div>
+																	</div>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="coment-area" >
+												<ul class="we-comet">
+													<li>
+														<div class="comet-avatar">
+															<img src="/images/resources/user2.png" alt="">
+														</div>
+														<div class="we-comment" >
+															<div class="coment-head">
+																<h5><a href="time-line.html" title="" th:text="${session.loginMember.getLoginId()}">ENFP</a></h5>
+																<!--															<span>1 year ago</span>-->
+																<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+															</div>
+															<p >왜 이해 못해줌? 그 친구 혹시 T야?</p>
+														</div>
+													<li>
+														<a href="#" title="" class="showmore underline">more comments</a>
+													</li>
+													<li class="post-comment">
+														<div class="comet-avatar">
+															<img src="/images/resources/user2.png" alt="">
+														</div>
+														<div class="post-comt-box">
+															<form method="post">
+																<textarea placeholder="Post your comment"></textarea>
+																<div class="add-smiles">
+																	<span class="em em-expressionless" title="add icon"></span>
+																</div>
+																<div class="smiles-bunch">
+																	<i class="em em---1"></i>
+																	<i class="em em-smiley"></i>
+																	<i class="em em-anguished"></i>
+																	<i class="em em-laughing"></i>
+																	<i class="em em-angry"></i>
+																	<i class="em em-astonished"></i>
+																	<i class="em em-blush"></i>
+																	<i class="em em-disappointed"></i>
+																	<i class="em em-worried"></i>
+																	<i class="em em-kissing_heart"></i>
+																	<i class="em em-rage"></i>
+																	<i class="em em-stuck_out_tongue"></i>
+																</div>
+																<button type="submit" class="post"></button>
+															</form>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div><!-- centerl meta -->
+							<div class="col-lg-3">
+								<aside class="sidebar static">
+									<div class="widget">
+										<h4 class="widget-title">오픈채팅</h4>
+										<div class="your-page">
+											<form action="/community" method="post">
+												<input type="text" name="name" placeholder="채팅방 이름">
+												<button type="submit" >방 만들기</button>
+											</form>
+
+											<table>
+												<tr th:each="room : ${roomList}" >
+													<td>
+														<a th:href="@{/chat/chatRoom(roomId=${room.roomId})}"
+														   th:text="${room.name}"></a>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div><!-- Categories -->
+									<div class="widget friend-list stick-widget">
+										<h4 class="widget-title">사용자</h4>
+										<div id="searchDir"></div>
+										<ul id="people-list" class="friendz-list" th:each="members : ${members}">
+											<li>
+												<figure>
+													<img src="/images/resources/user.png" alt="">
+													<span class="status f-online"></span>
+												</figure>
+												<div class="friendz-meta">
+													<a href="" th:text="${members.loginId}">인싸</a>
+												</div>
+											</li>
+										</ul>
+									</div><!-- friends list sidebar -->
+								</aside>
+							</div><!-- sidebar -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div th:insert="~{footer.html}"></div>
+
+</div>
+</body>
+
+</html>

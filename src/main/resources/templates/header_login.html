@@ -58,10 +58,15 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#Community" th:href="@{/}">Place</a>
+                    <a href="#Community" th:href="@{/getAllData}">Place</a>
                 </li>
                 <li>
-                    <a href="#Community" th:href="@{/display_recommendations}">AI.TIP</a>
+                    <a href="#Community" th:href="@{/get_recommendations}">AI.TIP</a>
+                    <ul>
+                        <li><a th:href="@{/get_book_recommendations}">Book</a></li>
+                        <li><a th:href="@{/get_recommendations}">Movie</a></li>
+                    </ul>
+
                 </li>
                 <li>
                     <a href="#Community" th:href="@{/community}">Community</a>

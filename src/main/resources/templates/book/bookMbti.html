@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="top-banner">
-                        <h1>유형별 영화추천 페이지</h1>
+                        <h1>유형별 책추천 페이지</h1>
                         <h2 style="color: #fff" th:text="${type}">분석가형(_NT_)</h2>
                         <br>
                         <!--유형별 MBTi 나열-->
@@ -59,7 +59,8 @@
         <strong th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
     </th:block>
 </div>
-<footer></footer>
+
+<div th:insert="~{footer.html}"></div>
 
 <script type="module" th:inline="javascript">
     import {bookForm} from '/js/book/popup(수정).js'
@@ -70,6 +71,7 @@
     const modal0 = document.getElementsByClassName('modalWrap');
     const btn = document.querySelectorAll('#form1 button');
 
+    const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     async function getUserLoginId() {
         try {
@@ -86,9 +88,7 @@
         return null;
     }
 
-
-    for (let i = 0; i < list.length; i++) {
-
+    for (let i = 0; i < 10; i++) {
         async function PopUp(e) {
             e.preventDefault();
             console.log('gd');
@@ -106,12 +106,12 @@
             const userLoginId = await getUserLoginId(); // 사용자 로그인 아이디 값을 비동기적으로 가져옴
 
             if (userLoginId) {
-                fetch('/save-user-movie-info', {
+                fetch('/save-user-book-info', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ info: bookInfo, author: bookAuthor, title:bookName ,loginId: userLoginId }),
+                    body: JSON.stringify({ description : bookInfo, author: bookAuthor, title:bookName ,loginId: userLoginId }),
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -123,11 +123,10 @@
             } else {
                 console.error('User not logged in.');
             }
-        
+        }
 
-        btn[i].addEventListener('click', PopUp);
+        btn[num[i]].addEventListener('click', PopUp);
     }
-}
 </script>
 
 

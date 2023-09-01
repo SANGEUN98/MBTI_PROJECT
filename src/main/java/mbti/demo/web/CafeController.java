@@ -1,5 +1,7 @@
 package mbti.demo.web;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mbti.demo.domain.Cafe;
@@ -40,10 +42,20 @@ public class CafeController {
         return "kaka"; // Render kaka.html template
     }
     @GetMapping("/getAllData")
-    public String getAllData(Model model) {
+    public String getAllData(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String login = "";
+        if(session == null){
+            login = "header.html";
+        }
+
+        else {
+            login="header_login.html";
+        }
         List<Cinema> cinemaInfo = cinemaService.getAllCinemas();
         List<Cafe> cafeInfo = cafeService.getAllCafes();
         List<Food> foodInfo = foodService.getAllFoods();
+        model.addAttribute("login", login);
         model.addAttribute("cinemaInfo", cinemaInfo);
         model.addAttribute("cafeInfo", cafeInfo);
         model.addAttribute("foodInfo", foodInfo);

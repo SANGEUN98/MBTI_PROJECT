@@ -16,7 +16,7 @@ import java.util.Map;
 public class MovieRecommendationController {
 
 
-    @GetMapping("/display_recommendations")
+    @GetMapping("/get_recommendations")
     public String displayRecommendations(Model model) {
         String flaskServerUrl = "http://localhost:5000/get_recommendations";
         RestTemplate restTemplate = new RestTemplate();

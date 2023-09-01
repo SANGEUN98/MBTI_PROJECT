@@ -154,18 +154,23 @@
 													<ins><a href="" title="" th:text="${list.nickName}">CY</a></ins>
 													<!-- ? -->
 													<span th:text="${list.dayTime}"></span>
+													<li style="font-size: 14px;list-style: none;">
+														<a th:href="@{/community/update/{id}(id=${list.id})}">수정</a>
+														<a th:href="@{/community/delete(id=${list.id})}">삭제</a>
+													</li>
 												</div>
+												<!-- 삭제 수정 -->
 												<!-- 리스트 내용 -->
 												<div class="post-meta">
 													<img src="" alt="">
 													<div class="description">
 														<p th:text="${list.content}"></p>
 													</div>
-													<!-- 삭제 수정 -->
-													<li>
-														<a th:href="@{/community/update/{id}(id=${list.id})}">수정</a>
-														<a th:href="@{/community/delete(id=${list.id})}">삭제</a>
-													</li>
+<!--													&lt;!&ndash; 삭제 수정 &ndash;&gt;-->
+<!--													<li>-->
+<!--														<a th:href="@{/community/update/{id}(id=${list.id})}">수정</a>-->
+<!--														<a th:href="@{/community/delete(id=${list.id})}">삭제</a>-->
+<!--													</li>-->
 													<div class="we-video-info">
 														<ul>
 															<li>
@@ -304,8 +309,7 @@
 		</div>
 	</section>
 
-	<footer>
-	</footer><!-- footer -->
+	<div th:insert="~{footer.html}"></div>
 </div>
 
 </body>

@@ -167,6 +167,7 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         form2.appendChild(div6)
         div7.setAttribute('class', 'modalBody')
         div6.appendChild(div7)
+        
         div7.appendChild(div8)
 
         // jQuery 코드
@@ -225,7 +226,9 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
             }
         });
 
-
+        p1.setAttribute("id", "nowRank")
+        p1.textContent = `현재 ${list[i][3]} 위`
+        circCont.appendChild(p1)
 // 요소들을 부모 컨테이너에 추가
         circCont.appendChild(button);
 
@@ -252,9 +255,7 @@ export function MovieForm(lists, first, second, third, fourth, fifth, sixth, sev
         // 차트 존
         div11.setAttribute('name', 'chart')
         div7.appendChild(div11)
-        p1.setAttribute("id", "nowRank")
-        p1.textContent = `현재 ${rankList[i][0][0]} 위`
-        div11.appendChild(p1)
+        
         canvas.setAttribute('name','canvas')
         canvas.setAttribute('id',`canvas${i}`)
         div11.appendChild(canvas)

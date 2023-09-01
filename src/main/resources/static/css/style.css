@@ -1353,6 +1353,11 @@ form button {
     width: 100%;
 }
 
+.post-meta > li{
+    list-style: none;
+    font-size: 14px;
+}
+
 .post-meta > img {
     float: left;
     width: 100%;
@@ -2019,8 +2024,9 @@ span.status.f-off {
 /*--- footer ---*/
 
 footer {
-    background: #fff;
+    background: whitesmoke;
     float: left;
+    text-align: center;
     padding: 75px 0;
     width: 100%;
     /*position: relative;*/
@@ -2175,6 +2181,7 @@ footer .logo {
     margin-bottom: 15px;
     width: 100%;
 }
+
 
 .logo > a {
     display: inline-block;
@@ -4683,7 +4690,6 @@ canvas {
 }
 
 .top-area > ul.main-menu > li::after {
-    content: "";
     font-family: fontawesome;
     font-size: 13px;
     position: absolute;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" ref="css/test/style.css" th:href="@{/css/test/style.css}">
+    <title>mbti 검사</title>
+</head>
+<body>
+<!-- <div class="name-box">
+    <input type="text">
+    <input type="button">
+</div> -->
+<form id = "mbti-question">
+</form>
+<input type="submit" class="mbti-submit">
+<script type="module" src="/js/test/Mbti.js"></script>
+<!--<script type="module" src="js/test/Mbti.js" th:inline="javascript">-->
+<!--    import {testForm} from '/js/test/Mbti.js'-->
+<!--    let list = [[${test}]]-->
+<!--    testForm(list)-->
+
+<!--</script>-->
+
+</body>
+</html>

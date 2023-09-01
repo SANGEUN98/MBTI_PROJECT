@@ -76,7 +76,13 @@ console.log(mbtiList);
                     font: { size: 18, weight: 'bold' },
                     color: 'gray',
                     formatter: function (value, context) {
-                        return context.dataIndex + Math.round(value * 100) / 4 + "%";
+                        if (value === 0){
+                            value = "";
+                            return value;
+                        }
+                        console.log(mbtiList.length);
+                        let a = value * 100 / mbtiList.length;
+                        return a+"%";
                     },
                 }
             }

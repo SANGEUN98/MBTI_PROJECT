@@ -8,7 +8,7 @@ public class BestBook {
     private String  img;
     private String  author;
     private String price;
-    private String info;
+    private String description;
     private String link;
 
     public BestBook(){

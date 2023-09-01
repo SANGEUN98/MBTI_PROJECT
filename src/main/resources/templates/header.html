@@ -15,6 +15,15 @@
         <!-- 추천쪽 버튼 색상 관련-->
         <link rel="stylesheet" href="css/color.css"  th:href="@{/css/color.css}">
 
+        <!--화면 크기에 대한 반응-->
+        <link rel="stylesheet" href="/css/responsive.css">
+
+        <style>
+            /*img{*/
+            /*    padding-bottom: 100px;*/
+            /*}*/
+        </style>
+
 
         <!-- <link rel="stylesheet" href="css/responsive.css"  th:href="@{/css/reponsive.css}"> -->
 
@@ -23,7 +32,7 @@
     <body>
     <div class="topbar stick">
         <div class="logo">
-            <a title="" th:href="@{/}"><img src="/img/MBTI껌.png" style="width: 70px; height: 40px"></a>
+            <a title="" th:href="@{/}"><img src="/img/MBTI껌.png" style="width: 70px; height: 40px;"></a>
         </div>
 
         <div class="top-area">
@@ -58,7 +67,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#Community" th:href="@{/}">Place</a>
+                    <a href="#Community" th:href="@{/getAllData}">Place</a>
                 </li>
             </ul>
         </div>

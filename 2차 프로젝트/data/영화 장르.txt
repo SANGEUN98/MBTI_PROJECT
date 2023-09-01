@@ -1,0 +1,9 @@
+
+
+
+
+
+분석가형 : 'SF', '판타지', '공포(호러)', '애니메이션'  findByAnalystType
+외교관형 : '드라마',  '가족', '멜로/로맨스', '코미디'   findByDiplomaticType
+관리자형 : '범죄', '스릴러', '사극', '전쟁',  '다큐멘터리', '액션'  findByAdministratorType
+탐험가형 : '미스터리',  '어드벤처', '뮤지컬','코미디', '애니메이션'  findByExplorerType

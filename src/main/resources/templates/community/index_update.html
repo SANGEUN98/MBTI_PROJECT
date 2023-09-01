@@ -103,7 +103,7 @@
 													</figure>
 													<div class="friend-name">
 														<ins><a href="" title="" th:text="${session.loginMember.getLoginId()}">CY</a></ins>
-														<span th:text="*{modified}"></span>
+<!--														<span th:text="*{modified}"></span>-->
 													</div>
 													<!--												<a th:href="@{/community/delete(id=${list.id})}">삭제</a>-->
 													<div class="post-meta">
@@ -165,8 +165,7 @@
 		</div>
 	</section>
 
-	<footer>
-	</footer><!-- footer -->
+	<div th:insert="~{footer.html}"></div>
 
 </div>
 </body>
